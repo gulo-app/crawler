@@ -10,7 +10,7 @@ class ShufersalParser extends Parser {
         //do parse
     }
 
-    extract(): Array<string> {
+    extractUrls(): Array<string> {
         return undefined;
     }
 }

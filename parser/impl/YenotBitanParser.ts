@@ -1,15 +1,17 @@
 import { Parser } from "../Parser";
+import {ParserUrls} from "../ParserUrls";
 
 class YenotBitanParser extends Parser {
 
-    constructor(name: string) {
-        super(name);
+
+    constructor(name: string, url: ParserUrls) {
+        super(name, url);
     }
 
     parse(): void {
     }
 
-    extract(): Array<string> {
+    extractUrls(): Array<string> {
         return undefined;
     }
 
