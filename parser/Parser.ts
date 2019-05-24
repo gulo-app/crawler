@@ -2,19 +2,16 @@ import {ParserUrls} from "./ParserUrls";
 import {Product} from "../crawler/Product";
 
 export abstract class Parser {
-   name:       string;
-   url:        ParserUrls;
+   //url:        ParserUrls;
    products:   Array<Product>;
 
-   protected constructor(name: string, url: ParserUrls){
-      this.name = name;
-      this.url = url;
+   protected constructor(){
       this.products = new Array<Product>();
    }
 
-   abstract parse(): void;
+   abstract parse(url: string, $: CheerioStatic, updateMode: boolean, productsId: any): Array<Product>;
 
-   abstract extractUrls(): Array<string>;
+   abstract extractUrls(url: string, node: any): Array<string>;
 
 }
 

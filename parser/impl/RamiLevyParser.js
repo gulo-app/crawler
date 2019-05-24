@@ -1,12 +1,10 @@
-
-const cheerio     =   require('cheerio');
-const fs          =   require('fs');
-const path        =   require('path');
-import { Parser } from "../Parser";
-import {ParserUrls} from "../ParserUrls";
-const TMP_FILE    =   {filename: 'tmp_products.json', get path(){return path.join(__dirname, './output', this.filename)}};
-const OUTPUT      =   {filename: 'output.json', get path(){return path.join(__dirname, '../output', this.filename)}};
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var cheerio = require('cheerio');
+var fs = require('fs');
+var path = require('path');
+var TMP_FILE = { filename: 'tmp_products.json', get path() { return path.join(__dirname, './output', this.filename); } };
+var OUTPUT = { filename: 'output.json', get path() { return path.join(__dirname, '../output', this.filename); } };
 /*
 export class RamiLevyParser extends Parser {
 
@@ -43,3 +41,4 @@ export class RamiLevyParser extends Parser {
     }*!/
 
 }*/
+//# sourceMappingURL=RamiLevyParser.js.map

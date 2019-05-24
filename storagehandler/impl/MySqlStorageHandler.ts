@@ -38,11 +38,11 @@ export class MySqlStorageHandler extends StorageHandler{
         }
 
         //check if firm exist and get id from sql;
+
         for (let product of products) {
             //do onDuplicateKey
             //option: insert 1 by 1 OR build query for all products together
         }
-
     }
 
     private async sqlQuery(query): Promise<QueryFunction> {

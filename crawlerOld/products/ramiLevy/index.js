@@ -2,19 +2,20 @@ const request     =   require('request');
 const cheerio     =   require('cheerio');
 const fs          =   require('fs');
 const path        =   require('path');
-const ROOT_URL    =   `https://m.rami-levy.co.il`;
+//const ROOT_URL    =   `https://m.rami-levy.co.il`;
 const TMP_FILE    =   {filename: 'tmp_products.json', get path(){return path.join(__dirname, './output', this.filename)}};
 const OUTPUT      =   {filename: 'output.json', get path(){return path.join(__dirname, '../output', this.filename)}};
 var   menuIndex   =   1;
 
 const fetch = async (url) => {
-  return new Promise((resolve, reject) => {
-    request(url, function(err, resp, body){
-        if(err) return reject(err);
-        return resolve(body);
-    });
-  })
+    return new Promise((resolve, reject) => {
+      request(url, function(err, response, body){
+          if(err) return reject(err);
+          return resolve(body);
+      });
+    })
 }
+
 const initializeTmpFile = async () => {
   try{
     fs.writeFileSync(TMP_FILE.path, '', 'utf-8');
@@ -61,6 +62,7 @@ const getRootMenu = async() => {
   });
   return menu;
 }
+
 const scanProduct = async (productURL) => {
   let pageHTML  = await fetch(productURL);
   let $         = await cheerio.load(pageHTML);

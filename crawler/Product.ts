@@ -1,21 +1,52 @@
 export class Product {
-    private _barcode: number;
+    private _name: string;
+    private _barcode: string;
     private _price: number;
-    private _link: string;
-    private _updateDate: Date = new Date();
+    private _url: string;
+    private _capacity: number;
+    private _capacityUnit: string;
+    private _updateDate: number;
 
-    constructor(barcode: number, price: number, link: string, updateDate: Date) {
+
+    constructor(barcode: string, name: string, price: number, url: string, capacity: number, capacityUnit: string) {
         this._barcode = barcode;
+        this._name = name;
         this._price = price;
-        this._link = link;
-        this._updateDate = updateDate;
+        this._url = url;
+        this._capacity = capacity;
+        this._capacityUnit = capacityUnit;
+        this._updateDate = Date.now();
     }
 
-    get barcode(): number {
+    get name(): string {
+        return this._name;
+    }
+
+    set name(value: string) {
+        this._name = value;
+    }
+
+    get capacity(): number {
+        return this._capacity;
+    }
+
+    set capacity(value: number) {
+        this._capacity = value;
+    }
+
+    get capacityUnit(): string {
+        return this._capacityUnit;
+    }
+
+    set capacityUnit(value: string) {
+        this._capacityUnit = value;
+    }
+
+    get barcode(): string {
         return this._barcode;
     }
 
-    set barcode(value: number) {
+    set barcode(value: string) {
         this._barcode = value;
     }
 
@@ -27,19 +58,19 @@ export class Product {
         this._price = value;
     }
 
-    get link(): string {
-        return this._link;
+    get url(): string {
+        return this._url;
     }
 
-    set link(value: string) {
-        this._link = value;
+    set url(value: string) {
+        this._url = value;
     }
 
-    get updateDate(): Date {
+    get updateDate(): number {
         return this._updateDate;
     }
 
-    set updateDate(value: Date) {
+    set updateDate(value: number) {
         this._updateDate = value;
     }
 }

@@ -1,18 +1,23 @@
 import { Parser } from "../Parser";
 import {ParserUrls} from "../ParserUrls";
+import {Product} from "../../crawler/Product";
 
-class YenotBitanParser extends Parser {
+export class YenotBitanParser extends Parser {
 
 
-    constructor(name: string, url: ParserUrls) {
-        super(name, url);
+    constructor() {
+        super();
     }
 
-    parse(): void {
-    }
 
     extractUrls(): Array<string> {
         return undefined;
     }
+
+    parse(url: string, node: any, updateMode: boolean, productsId: any): Array<Product> {
+        return undefined;
+    }
+
+
 
 }

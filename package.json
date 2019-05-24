@@ -4,13 +4,19 @@
   "description": "products crawler for shopping comparison",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "crawler": "node index.js",
+    "dev": "SET NODE_ENV=DEV&&nodemon index.js",
+    "prod": "SET NODE_ENV=production&&node index.js"
   },
   "author": "ligal levy & tomer flom",
   "license": "ISC",
   "dependencies": {
-    "cheerio": "^1.0.0-rc.2",
-    "mysql": "^2.17.1"
+    "@types/cheerio": "^0.22.11",
+    "cheerio": "^1.0.0-rc.3",
+    "jssoup": "0.0.10",
+    "mysql": "^2.17.1",
+    "request": "^2.88.0"
   },
   "devDependencies": {
     "@types/mysql": "^2.15.6"
