@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Product = /** @class */ (function () {
-    function Product(barcode, name, price, url, capacity, capacityUnit) {
+    function Product(barcode, name, price, url, capacity, capacityUnit, brand) {
         this._barcode = barcode;
         this._name = name;
         this._price = price;
@@ -9,6 +9,7 @@ var Product = /** @class */ (function () {
         this._capacity = capacity;
         this._capacityUnit = capacityUnit;
         this._updateDate = Date.now();
+        this._brand = brand;
     }
     Object.defineProperty(Product.prototype, "name", {
         get: function () {

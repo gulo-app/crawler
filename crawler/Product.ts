@@ -5,10 +5,11 @@ export class Product {
     private _url: string;
     private _capacity: number;
     private _capacityUnit: string;
+    private _brand: string;
     private _updateDate: number;
 
 
-    constructor(barcode: string, name: string, price: number, url: string, capacity: number, capacityUnit: string) {
+    constructor(barcode: string, name: string, price: number, url: string, capacity: number, capacityUnit: string, brand: string) {
         this._barcode = barcode;
         this._name = name;
         this._price = price;
@@ -16,6 +17,7 @@ export class Product {
         this._capacity = capacity;
         this._capacityUnit = capacityUnit;
         this._updateDate = Date.now();
+        this._brand = brand;
     }
 
     get name(): string {

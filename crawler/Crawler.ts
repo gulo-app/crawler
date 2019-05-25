@@ -4,6 +4,7 @@ import {MySqlStorageHandler} from "../storagehandler/impl/MySqlStorageHandler";
 import {ShufersalParser} from "../parser/impl/ShufersalParser";
 import {Downloader} from "../downloader/Downloader";
 import {Product} from "./Product";
+import {url} from "inspector";
 const cheerio = require('cheerio');
 
 export class Crawler {
@@ -34,19 +35,20 @@ export class Crawler {
         let newProducts = [];
         let urlsToCrawl: string[] = urls;
         while (urlsToCrawl.length){
-            console.log(urlsToCrawl.length);
             let currentUrl = urlsToCrawl.pop();
             let parser = this.findParser(currentUrl);
+            console.log("start to crawl in url:  " + currentUrl)
             if(parser){
                 let html = await Downloader.downloadHtml(currentUrl);
                 const $ = await cheerio.load(html);
                 if($){
                     let products = parser.parse(currentUrl, $, false, undefined);
                     if(products){
-                        newProducts.push(products);
+                        if(products.length != 0) {
+                            Array.prototype.push.apply(newProducts, products);
+                        }
                     }
-                    // @ts-ignore
-                    urlsToCrawl.push(parser.extractUrls(currentUrl, $));
+                    Array.prototype.push.apply(urlsToCrawl, parser.extractUrls(currentUrl, $));
                 }
             }
         }

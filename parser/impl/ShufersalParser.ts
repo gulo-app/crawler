@@ -1,4 +1,4 @@
-//const cheerio     =   require('@types/cheerio');
+const cheerio = require('cheerio');
 import { Parser } from "../Parser";
 import {ParserUrls} from "../ParserUrls";
 import {Product} from "../../crawler/Product";
@@ -22,7 +22,7 @@ export class ShufersalParser extends Parser {
             let menu: CheerioElement[] = $('ul#secondMenu1 > li').toArray();
             for (let li of menu) {
                 try {
-                    let category = li['data-category'];
+                    let category = li.attribs['data-category'];
                     urls.push(this.categoryUrl + '/' + category);
                 } catch (e) {
                     continue;
@@ -49,7 +49,7 @@ export class ShufersalParser extends Parser {
             }
         }
         else {
-            // nothing to parse...
+            // no products to parse in this page...
             return undefined;
         }
     }
@@ -57,14 +57,19 @@ export class ShufersalParser extends Parser {
     parseNew(products: CheerioElement[], url: string) {
         let parsedProducts = [];
         for (let product of products) {
+            const $ = cheerio.load(product);
+            let capacityInfo: string[] = $('div > div.textContainer > div > div.labelsListContainer > div > span:nth-child(1)')
+                .text().split(' ');
+            let  brand = $('div > div.textContainer > div > div.labelsListContainer > div > span:nth-child(2)').text();
             try {
                 let newProduct = new Product(
-                    (<string>product['data-product-code']).replace('P_', ''),
-                    product['data-product-name'],
-                    product['data-product-price'],
+                    product.attribs['data-product-code'].replace('P_', ''),
+                    product.attribs['data-product-name'],
+                    Number(product.attribs['data-product-price']),
                     url,
-                    void 0,//product.find('div', {'class': 'labelsListContainer'}).text,
-                    void 0
+                    Number(capacityInfo[0]),
+                    capacityInfo[1],
+                    brand
                 );
                 parsedProducts.push(newProduct);
             } catch (e) {
@@ -84,12 +89,13 @@ export class ShufersalParser extends Parser {
             if(productsIdWithPrefix.includes(product['data-product-code'])) {
                 updatedProducts.push(
                     new Product(
-                        (<string>product['data-product-code']).replace('P_', ''),
-                        void 0,
+                        product.attribs['data-product-code'].replace('P_', ''),
+                        null,
                         product['data-product-price'],
-                        void 0,
-                        void 0,
-                        void 0
+                        null,
+                        null,
+                        null,
+                        null
                     ));
             }
         }

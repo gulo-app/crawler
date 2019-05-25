@@ -43,7 +43,7 @@ var Downloader = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 return [2 /*return*/, new Promise(function (resolve, reject) {
-                        var html = request(url, function (err, response, body) {
+                        request(url, function (err, response, body) {
                             if (err)
                                 return reject(err);
                             return resolve(body);

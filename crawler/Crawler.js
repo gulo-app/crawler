@@ -66,9 +66,9 @@ var Crawler = /** @class */ (function () {
                         _a.label = 1;
                     case 1:
                         if (!urlsToCrawl.length) return [3 /*break*/, 5];
-                        console.log(urlsToCrawl.length);
                         currentUrl = urlsToCrawl.pop();
                         parser = this.findParser(currentUrl);
+                        console.log("start to crawl in url:  " + currentUrl);
                         if (!parser) return [3 /*break*/, 4];
                         return [4 /*yield*/, Downloader_1.Downloader.downloadHtml(currentUrl)];
                     case 2:
@@ -79,10 +79,11 @@ var Crawler = /** @class */ (function () {
                         if ($) {
                             products = parser.parse(currentUrl, $, false, undefined);
                             if (products) {
-                                newProducts.push(products);
+                                if (products.length != 0) {
+                                    Array.prototype.push.apply(newProducts, products);
+                                }
                             }
-                            // @ts-ignore
-                            urlsToCrawl.push(parser.extractUrls(currentUrl, $));
+                            Array.prototype.push.apply(urlsToCrawl, parser.extractUrls(currentUrl, $));
                         }
                         _a.label = 4;
                     case 4: return [3 /*break*/, 1];
@@ -93,7 +94,7 @@ var Crawler = /** @class */ (function () {
     };
     Crawler.prototype.update = function (products) {
         return __awaiter(this, void 0, void 0, function () {
-            var uniqueUrls, updated, _i, products_1, url, _a, uniqueUrls_1, url, parser, $;
+            var uniqueUrls, updated, _i, products_1, url_1, _a, uniqueUrls_1, url_2, parser, $;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
@@ -101,26 +102,26 @@ var Crawler = /** @class */ (function () {
                         updated = [];
                         // @ts-ignore
                         for (_i = 0, products_1 = products; _i < products_1.length; _i++) {
-                            url = products_1[_i];
-                            if (uniqueUrls.isPrototypeOf(url['url'])) {
-                                uniqueUrls[url['url']].append(url['id']);
+                            url_1 = products_1[_i];
+                            if (uniqueUrls.isPrototypeOf(url_1['url'])) {
+                                uniqueUrls[url_1['url']].append(url_1['id']);
                             }
                             else {
-                                uniqueUrls[url['url']] = [url['id']];
+                                uniqueUrls[url_1['url']] = [url_1['id']];
                             }
                         }
                         _a = 0, uniqueUrls_1 = uniqueUrls;
                         _b.label = 1;
                     case 1:
                         if (!(_a < uniqueUrls_1.length)) return [3 /*break*/, 4];
-                        url = uniqueUrls_1[_a];
-                        parser = this.findParser(url);
+                        url_2 = uniqueUrls_1[_a];
+                        parser = this.findParser(url_2);
                         if (!parser) return [3 /*break*/, 3];
-                        return [4 /*yield*/, Downloader_1.Downloader.downloadHtml(url)];
+                        return [4 /*yield*/, Downloader_1.Downloader.downloadHtml(url_2)];
                     case 2:
                         $ = _b.sent();
                         if ($) {
-                            updated.push(parser.parse(url, $, true, uniqueUrls[url]));
+                            updated.push(parser.parse(url_2, $, true, uniqueUrls[url_2]));
                         }
                         _b.label = 3;
                     case 3:

@@ -13,7 +13,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-//const cheerio     =   require('@types/cheerio');
+var cheerio = require('cheerio');
 var Parser_1 = require("../Parser");
 var ParserUrls_1 = require("../ParserUrls");
 var Product_1 = require("../../crawler/Product");
@@ -34,7 +34,7 @@ var ShufersalParser = /** @class */ (function (_super) {
             for (var _i = 0, menu_1 = menu; _i < menu_1.length; _i++) {
                 var li = menu_1[_i];
                 try {
-                    var category = li['data-category'];
+                    var category = li.attribs['data-category'];
                     urls.push(this.categoryUrl + '/' + category);
                 }
                 catch (e) {
@@ -63,7 +63,7 @@ var ShufersalParser = /** @class */ (function (_super) {
             }
         }
         else {
-            // nothing to parse...
+            // no products to parse in this page...
             return undefined;
         }
     };
@@ -71,9 +71,12 @@ var ShufersalParser = /** @class */ (function (_super) {
         var parsedProducts = [];
         for (var _i = 0, products_1 = products; _i < products_1.length; _i++) {
             var product = products_1[_i];
+            var $ = cheerio.load(product);
+            var capacityInfo = $('div > div.textContainer > div > div.labelsListContainer > div > span:nth-child(1)')
+                .text().split(' ');
+            var brand = $('div > div.textContainer > div > div.labelsListContainer > div > span:nth-child(2)').text();
             try {
-                var newProduct = new Product_1.Product(product['data-product-code'].replace('P_', ''), product['data-product-name'], product['data-product-price'], url, void 0, //product.find('div', {'class': 'labelsListContainer'}).text,
-                void 0);
+                var newProduct = new Product_1.Product(product.attribs['data-product-code'].replace('P_', ''), product.attribs['data-product-name'], Number(product.attribs['data-product-price']), url, Number(capacityInfo[0]), capacityInfo[1], brand);
                 parsedProducts.push(newProduct);
             }
             catch (e) {
@@ -91,7 +94,7 @@ var ShufersalParser = /** @class */ (function (_super) {
                 return 'P_' + value;
             });
             if (productsIdWithPrefix.includes(product['data-product-code'])) {
-                updatedProducts.push(new Product_1.Product(product['data-product-code'].replace('P_', ''), void 0, product['data-product-price'], void 0, void 0, void 0));
+                updatedProducts.push(new Product_1.Product(product.attribs['data-product-code'].replace('P_', ''), null, product['data-product-price'], null, null, null, null));
             }
         }
         return updatedProducts;
