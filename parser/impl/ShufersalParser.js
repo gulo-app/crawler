@@ -13,10 +13,11 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
+var UpdatedProduct_1 = require("../../crawler/UpdatedProduct");
 var cheerio = require('cheerio');
 var Parser_1 = require("../Parser");
 var ParserUrls_1 = require("../ParserUrls");
-var Product_1 = require("../../crawler/Product");
+var NewProduct_1 = require("../../crawler/NewProduct");
 var ShufersalParser = /** @class */ (function (_super) {
     __extends(ShufersalParser, _super);
     function ShufersalParser() {
@@ -75,8 +76,9 @@ var ShufersalParser = /** @class */ (function (_super) {
             var capacityInfo = $('div > div.textContainer > div > div.labelsListContainer > div > span:nth-child(1)')
                 .text().split(' ');
             var brand = $('div > div.textContainer > div > div.labelsListContainer > div > span:nth-child(2)').text();
+            var category = url.split('/');
             try {
-                var newProduct = new Product_1.Product(product.attribs['data-product-code'].replace('P_', ''), product.attribs['data-product-name'], Number(product.attribs['data-product-price']), url, Number(capacityInfo[0]), capacityInfo[1], brand);
+                var newProduct = new NewProduct_1.NewProduct(product.attribs['data-product-code'].replace('P_', ''), product.attribs['data-product-name'], Number(product.attribs['data-product-price']), url, Number(capacityInfo[0]), capacityInfo[1], brand, category[category.length - 1]);
                 parsedProducts.push(newProduct);
             }
             catch (e) {
@@ -94,7 +96,7 @@ var ShufersalParser = /** @class */ (function (_super) {
                 return 'P_' + value;
             });
             if (productsIdWithPrefix.includes(product['data-product-code'])) {
-                updatedProducts.push(new Product_1.Product(product.attribs['data-product-code'].replace('P_', ''), null, product['data-product-price'], null, null, null, null));
+                updatedProducts.push(new UpdatedProduct_1.UpdatedProduct(product.attribs['data-product-code'].replace('P_', ''), Number(product.attribs['data-product-price'])));
             }
         }
         return updatedProducts;

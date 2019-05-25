@@ -1,7 +1,8 @@
 import {StorageHandler} from "../StorageHandler";
 import mysql = require('mysql');
 import {Pool, QueryFunction} from "mysql";
-import {Product} from "../../crawler/Product";
+import {NewProduct} from "../../crawler/NewProduct";
+import {StoresConsts} from "../model/SqlConsts";
 //const IS_PROD  =  process.env.IS_PROD;
 
 export class MySqlStorageHandler extends StorageHandler{
@@ -30,7 +31,7 @@ export class MySqlStorageHandler extends StorageHandler{
         });
     }
 
-    insert(products: Array<Product>, firm: string): void {
+    insert(products: Array<NewProduct>, firm: StoresConsts): void {
         //insert all products from list
         if(products.length == 0) {
             console.log("nothing to insert, products list is empty")

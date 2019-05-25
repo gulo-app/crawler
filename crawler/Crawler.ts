@@ -3,8 +3,9 @@ import {StorageHandler} from "../storagehandler/StorageHandler";
 import {MySqlStorageHandler} from "../storagehandler/impl/MySqlStorageHandler";
 import {ShufersalParser} from "../parser/impl/ShufersalParser";
 import {Downloader} from "../downloader/Downloader";
-import {Product} from "./Product";
+import {NewProduct} from "./NewProduct";
 import {url} from "inspector";
+import {StoresConsts} from "../storagehandler/model/SqlConsts";
 const cheerio = require('cheerio');
 
 export class Crawler {
@@ -31,13 +32,13 @@ export class Crawler {
         return null;
     }
 
-    public async crawl(urls: string[]): Promise<Array<Product>> {
+    public async crawl(urls: string[]): Promise<Array<NewProduct>> {
         let newProducts = [];
         let urlsToCrawl: string[] = urls;
         while (urlsToCrawl.length){
             let currentUrl = urlsToCrawl.pop();
             let parser = this.findParser(currentUrl);
-            console.log("start to crawl in url:  " + currentUrl)
+            console.log("start to crawl in url:  " + currentUrl);
             if(parser){
                 let html = await Downloader.downloadHtml(currentUrl);
                 const $ = await cheerio.load(html);
@@ -56,7 +57,7 @@ export class Crawler {
         return newProducts;
     }
 
-    public async update(products: Promise<Array<Product>>): Promise<void> {
+    public async update(products: Promise<Array<NewProduct>>): Promise<void> {
         let uniqueUrls = [];
         let updated = [];
         // @ts-ignore
@@ -79,7 +80,7 @@ export class Crawler {
             }
         }
 
-        this._storageHandler.insert(updated, "1");
+        this._storageHandler.insert(updated, StoresConsts.SHUFERSAL);
         return;
     }
 
@@ -94,7 +95,7 @@ export class Crawler {
 //  if there is parser in parser list for url
 //          parse()
 //  Parser.extractUrls
-//extractUrls products and create new Product
+//extractUrls products and create new NewProduct
 // add product to storageHandlerList.add
 //
 //storage.insert

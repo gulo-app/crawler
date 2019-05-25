@@ -1,7 +1,9 @@
+import {UpdatedProduct} from "../../crawler/UpdatedProduct";
+
 const cheerio = require('cheerio');
 import { Parser } from "../Parser";
 import {ParserUrls} from "../ParserUrls";
-import {Product} from "../../crawler/Product";
+import {NewProduct} from "../../crawler/NewProduct";
 
 export class ShufersalParser extends Parser {
 
@@ -33,7 +35,7 @@ export class ShufersalParser extends Parser {
             return [];
     }
 
-    parse(url: string, $: CheerioStatic, updateMode: boolean = false, productsId: any = void 0): Array<Product> {
+    parse(url: string, $: CheerioStatic, updateMode: boolean = false, productsId: any = void 0): Array<NewProduct> {
         if(productsId ==  undefined)
             productsId = [];
 
@@ -61,15 +63,18 @@ export class ShufersalParser extends Parser {
             let capacityInfo: string[] = $('div > div.textContainer > div > div.labelsListContainer > div > span:nth-child(1)')
                 .text().split(' ');
             let  brand = $('div > div.textContainer > div > div.labelsListContainer > div > span:nth-child(2)').text();
+            let category: string[] = url.split('/');
+
             try {
-                let newProduct = new Product(
+                let newProduct = new NewProduct(
                     product.attribs['data-product-code'].replace('P_', ''),
                     product.attribs['data-product-name'],
                     Number(product.attribs['data-product-price']),
                     url,
                     Number(capacityInfo[0]),
                     capacityInfo[1],
-                    brand
+                    brand,
+                    category[category.length-1]
                 );
                 parsedProducts.push(newProduct);
             } catch (e) {
@@ -88,14 +93,9 @@ export class ShufersalParser extends Parser {
             })
             if(productsIdWithPrefix.includes(product['data-product-code'])) {
                 updatedProducts.push(
-                    new Product(
+                    new UpdatedProduct(
                         product.attribs['data-product-code'].replace('P_', ''),
-                        null,
-                        product['data-product-price'],
-                        null,
-                        null,
-                        null,
-                        null
+                        Number(product.attribs['data-product-price'])
                     ));
             }
         }

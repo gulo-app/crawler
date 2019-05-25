@@ -1,4 +1,4 @@
-export enum StoresConst {
+export enum StoresConsts {
     RAMI_LEVI = 1,
     SHUFERSAL = 2,
     YENOT_BITAN = 3
@@ -9,7 +9,8 @@ export enum CapacityUnitConst {
     UNIT = 444,
     LITER = 236,
     ML = 82,
-    KILOGRAM = 108
+    KILOGRAM = 108,
+    MILLILITER = 85
 }
 
 export enum CategoriesConst {

@@ -38,6 +38,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var MySqlStorageHandler_1 = require("../storagehandler/impl/MySqlStorageHandler");
 var ShufersalParser_1 = require("../parser/impl/ShufersalParser");
 var Downloader_1 = require("../downloader/Downloader");
+var SqlConsts_1 = require("../storagehandler/model/SqlConsts");
 var cheerio = require('cheerio');
 var Crawler = /** @class */ (function () {
     function Crawler() {
@@ -128,7 +129,7 @@ var Crawler = /** @class */ (function () {
                         _a++;
                         return [3 /*break*/, 1];
                     case 4:
-                        this._storageHandler.insert(updated, "1");
+                        this._storageHandler.insert(updated, SqlConsts_1.StoresConsts.SHUFERSAL);
                         return [2 /*return*/];
                 }
             });
@@ -142,7 +143,7 @@ exports.Crawler = Crawler;
 //  if there is parser in parser list for url
 //          parse()
 //  Parser.extractUrls
-//extractUrls products and create new Product
+//extractUrls products and create new NewProduct
 // add product to storageHandlerList.add
 //
 //storage.insert

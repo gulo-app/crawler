@@ -59,7 +59,7 @@ class InventoryCrawler extends Inventory{
 
       product.category_id = menuIndexParser(product.menuIndex);
 
-      if(product.barcode.toString().length<11) //remove all illegal barcodes from array
+      if(product.barcode.toString().length<11) //remove all illegal barcode from array
         products.splice(i,1);
     }
   }
