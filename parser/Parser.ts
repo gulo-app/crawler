@@ -1,5 +1,5 @@
 import {ParserUrls} from "./ParserUrls";
-import {NewProduct} from "../crawler/NewProduct";
+import {NewProduct} from "../product/NewProduct";
 
 export abstract class Parser {
    //url:        ParserUrls;

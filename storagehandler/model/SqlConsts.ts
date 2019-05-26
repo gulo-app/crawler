@@ -10,7 +10,6 @@ export enum CapacityUnitConst {
     LITER = 236,
     ML = 82,
     KILOGRAM = 108,
-    MILLILITER = 85
 }
 
 export enum CategoriesConst {
@@ -19,6 +18,7 @@ export enum CategoriesConst {
     HOUSE_KEEPING = 3,
     CARE_AND_BABIES = 4,
     CLOTHING = 5,
-    ELECTRICAL = 6
+    ELECTRICAL = 6,
+    GENERAL = 7
 }
 

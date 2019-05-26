@@ -2,6 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var SqlFields;
 (function (SqlFields) {
+    SqlFields["BRAND_NAME"] = "brand_name";
+    SqlFields["CATEGORY"] = "category_id";
     SqlFields["BARCODE"] = "barcode";
     SqlFields["PRODUCT_NAME"] = "product_name";
     SqlFields["BRAND_ID"] = "brand_id";
@@ -14,7 +16,7 @@ var ShoppingCartField;
     ShoppingCartField["BARCODE"] = "barcode";
     ShoppingCartField["PRICE"] = "price";
     ShoppingCartField["LINK"] = "link";
-    ShoppingCartField["UPDATE_TIME"] = "updateAt";
+    ShoppingCartField["UPDATE_TIME"] = "updatedAt";
 })(ShoppingCartField = exports.ShoppingCartField || (exports.ShoppingCartField = {}));
 var ProductCategoryField;
 (function (ProductCategoryField) {

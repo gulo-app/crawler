@@ -1,4 +1,6 @@
 export enum SqlFields {
+    BRAND_NAME = "brand_name",
+    CATEGORY = "category_id",
     BARCODE = "barcode",
     PRODUCT_NAME = "product_name",
     BRAND_ID = "brand_id",
@@ -11,7 +13,7 @@ export enum ShoppingCartField {
     BARCODE = "barcode",
     PRICE = "price",
     LINK = "link",
-    UPDATE_TIME = "updateAt"
+    UPDATE_TIME = "updatedAt"
 }
 
 export enum ProductCategoryField {

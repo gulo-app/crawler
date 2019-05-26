@@ -1,25 +1,22 @@
-export class NewProduct {
+import {Product} from "./Product";
+
+export class NewProduct extends Product{
     private _name: string;
-    private _barcode: string;
-    private _price: number;
-    private _url: string;
     private _capacity: number;
     private _capacityUnit: string;
     private _brand: string;
     private _category: string;
-    private _updateDate: number;
+    private _url: string
 
-    constructor(barcode: string, name: string, price: number, url: string, capacity: number,
-                capacityUnit: string, brand: string, category: string) {
-        this._barcode = barcode;
+    constructor(barcode: number, name: string, price: number, url: string, capacity: number,
+                capacityUnit: string, brand: string, category: string, firm: number) {
+        super(barcode, price, firm);
         this._name = name;
-        this._price = price;
-        this._url = url;
         this._capacity = capacity;
         this._capacityUnit = capacityUnit;
-        this._updateDate = Date.now();
         this._brand = brand;
         this._category = category;
+        this._url = url;
     }
 
     get name(): string {
@@ -46,38 +43,6 @@ export class NewProduct {
         this._capacityUnit = value;
     }
 
-    get barcode(): string {
-        return this._barcode;
-    }
-
-    set barcode(value: string) {
-        this._barcode = value;
-    }
-
-    get price(): number {
-        return this._price;
-    }
-
-    set price(value: number) {
-        this._price = value;
-    }
-
-    get url(): string {
-        return this._url;
-    }
-
-    set url(value: string) {
-        this._url = value;
-    }
-
-    get updateDate(): number {
-        return this._updateDate;
-    }
-
-    set updateDate(value: number) {
-        this._updateDate = value;
-    }
-
     get brand(): string {
         return this._brand;
     }
@@ -92,5 +57,13 @@ export class NewProduct {
 
     set category(value: string) {
         this._category = value;
+    }
+
+    get url(): string {
+        return this._url;
+    }
+
+    set url(value: string) {
+        this._url = value;
     }
 }

@@ -1,9 +1,10 @@
-import {UpdatedProduct} from "../../crawler/UpdatedProduct";
+import {StoresConsts} from "../../../storagehandler/model/SqlConsts";
 
 const cheerio = require('cheerio');
-import { Parser } from "../Parser";
-import {ParserUrls} from "../ParserUrls";
-import {NewProduct} from "../../crawler/NewProduct";
+import { Parser } from "../../Parser";
+import {ParserUrls} from "../../ParserUrls";
+import {NewProduct} from "../../../product/NewProduct";
+import {Product} from "../../../product/Product";
 
 export class ShufersalParser extends Parser {
 
@@ -14,8 +15,6 @@ export class ShufersalParser extends Parser {
         super();
         this.baseUrl = ParserUrls.SHUFERSAL_HOME;
         this.categoryUrl = ParserUrls.SHUFERSAL_CATEGORY;
-        //TODO: map_cat_to_gulo
-        //{'milk': 'A01'}
     }
 
     extractUrls(url: string, $: CheerioStatic): Array<string> {
@@ -67,14 +66,15 @@ export class ShufersalParser extends Parser {
 
             try {
                 let newProduct = new NewProduct(
-                    product.attribs['data-product-code'].replace('P_', ''),
+                    Number(product.attribs['data-product-code'].replace('P_', '')),
                     product.attribs['data-product-name'],
                     Number(product.attribs['data-product-price']),
                     url,
                     Number(capacityInfo[0]),
                     capacityInfo[1],
                     brand,
-                    category[category.length-1]
+                    category[category.length-1],
+                    StoresConsts.SHUFERSAL
                 );
                 parsedProducts.push(newProduct);
             } catch (e) {
@@ -85,6 +85,7 @@ export class ShufersalParser extends Parser {
         return parsedProducts;
     }
 
+    //TODO: check if works - test
     parseUpdate(products: CheerioElement[], productsBarcodeList: [] = void 0) {
         let updatedProducts = [];
         for(let product of products){
@@ -93,9 +94,10 @@ export class ShufersalParser extends Parser {
             })
             if(productsIdWithPrefix.includes(product['data-product-code'])) {
                 updatedProducts.push(
-                    new UpdatedProduct(
-                        product.attribs['data-product-code'].replace('P_', ''),
-                        Number(product.attribs['data-product-price'])
+                    new Product(
+                        Number(product.attribs['data-product-code'].replace('P_', '')),
+                        Number(product.attribs['data-product-price']),
+                        StoresConsts.SHUFERSAL
                     ));
             }
         }

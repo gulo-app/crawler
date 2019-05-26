@@ -1,16 +1,30 @@
 "use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 Object.defineProperty(exports, "__esModule", { value: true });
-var NewProduct = /** @class */ (function () {
+var Product_1 = require("./Product");
+var NewProduct = /** @class */ (function (_super) {
+    __extends(NewProduct, _super);
     function NewProduct(barcode, name, price, url, capacity, capacityUnit, brand, category) {
-        this._barcode = barcode;
-        this._name = name;
-        this._price = price;
-        this._url = url;
-        this._capacity = capacity;
-        this._capacityUnit = capacityUnit;
-        this._updateDate = Date.now();
-        this._brand = brand;
-        this._category = category;
+        var _this = _super.call(this, barcode, price) || this;
+        _this._name = name;
+        _this._capacity = capacity;
+        _this._capacityUnit = capacityUnit;
+        _this._brand = brand;
+        _this._category = category;
+        _this._url = url;
+        return _this;
     }
     Object.defineProperty(NewProduct.prototype, "name", {
         get: function () {
@@ -42,46 +56,6 @@ var NewProduct = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(NewProduct.prototype, "barcode", {
-        get: function () {
-            return this._barcode;
-        },
-        set: function (value) {
-            this._barcode = value;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(NewProduct.prototype, "price", {
-        get: function () {
-            return this._price;
-        },
-        set: function (value) {
-            this._price = value;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(NewProduct.prototype, "url", {
-        get: function () {
-            return this._url;
-        },
-        set: function (value) {
-            this._url = value;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(NewProduct.prototype, "updateDate", {
-        get: function () {
-            return this._updateDate;
-        },
-        set: function (value) {
-            this._updateDate = value;
-        },
-        enumerable: true,
-        configurable: true
-    });
     Object.defineProperty(NewProduct.prototype, "brand", {
         get: function () {
             return this._brand;
@@ -102,7 +76,17 @@ var NewProduct = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(NewProduct.prototype, "url", {
+        get: function () {
+            return this._url;
+        },
+        set: function (value) {
+            this._url = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
     return NewProduct;
-}());
+}(Product_1.Product));
 exports.NewProduct = NewProduct;
 //# sourceMappingURL=NewProduct.js.map

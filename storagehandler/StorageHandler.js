@@ -1,39 +1,36 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var SqlFields_1 = require("./model/SqlFields");
-var SqlConsts_1 = require("./model/SqlConsts");
+var StorageUtils_1 = require("./StorageUtils");
+var Product_1 = require("../product/Product");
 var StorageHandler = /** @class */ (function () {
     function StorageHandler(isProd) {
         this.isProd = isProd;
     }
     StorageHandler.prototype.prepareNewProductMap = function (product) {
+        var prodMap = this.prepareBasicProduct(product);
+        if (typeof product === Product_1.Product.name) {
+            return prodMap;
+        }
+        prodMap.set(SqlFields_1.SqlFields.PRODUCT_NAME, product.name);
+        prodMap.set(SqlFields_1.SqlFields.BRAND_NAME, product.brand);
+        if (product.capacity === NaN) {
+            // @ts-ignore
+            product.capacity(0);
+        }
+        prodMap.set(SqlFields_1.SqlFields.CAPACITY, product.capacity.toString());
+        prodMap.set(SqlFields_1.ShoppingCartField.LINK, product.url);
+        prodMap.set(SqlFields_1.SqlFields.CAPACITY_UNIT, StorageUtils_1.StorageUtils.capacityUnitHandler(product.capacityUnit).toString());
+        prodMap.set(SqlFields_1.SqlFields.CATEGORY, StorageUtils_1.StorageUtils.categoriesHandler(product.category).toString());
+        return prodMap;
+    };
+    StorageHandler.prototype.prepareBasicProduct = function (product) {
         var prodMap = new Map();
         if (typeof product.barcode === "number") {
             prodMap.set(SqlFields_1.SqlFields.BARCODE, product.barcode);
         }
-        prodMap.set(SqlFields_1.SqlFields.PRODUCT_NAME, product.name);
-        prodMap.set(SqlFields_1.SqlFields.BRAND_ID, product.brand);
-        prodMap.set(SqlFields_1.SqlFields.CAPACITY, product.capacity);
-        switch (product.capacityUnit) {
-            case 'גרם':
-                prodMap.set(SqlFields_1.SqlFields.CAPACITY_UNIT, Number(SqlConsts_1.CapacityUnitConst.GRAM));
-                break;
-            case 'ליטר':
-                prodMap.set(SqlFields_1.SqlFields.CAPACITY_UNIT, Number(SqlConsts_1.CapacityUnitConst.LITER));
-                break;
-            case 'ק"ג':
-                prodMap.set(SqlFields_1.SqlFields.CAPACITY_UNIT, Number(SqlConsts_1.CapacityUnitConst.KILOGRAM));
-                break;
-            case '*' || 'יחידות' || 'יחידה':
-                prodMap.set(SqlFields_1.SqlFields.CAPACITY_UNIT, Number(SqlConsts_1.CapacityUnitConst.UNIT));
-                break;
-            case 'מ"ל':
-                prodMap.set(SqlFields_1.SqlFields.CAPACITY_UNIT, Number(SqlConsts_1.CapacityUnitConst.MILLILITER));
-                break;
-            default:
-                prodMap.set(SqlFields_1.SqlFields.CAPACITY_UNIT, Number(SqlConsts_1.CapacityUnitConst.UNIT));
-        }
-        //prodMap.set(SqlFields.CATEGORY, product.category);
+        prodMap.set(SqlFields_1.ShoppingCartField.PRICE, product.price);
+        prodMap.set(SqlFields_1.ShoppingCartField.UPDATE_TIME, product.updateDate);
         return prodMap;
     };
     return StorageHandler;

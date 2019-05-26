@@ -50,6 +50,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var StorageHandler_1 = require("../StorageHandler");
 var mysql = require("mysql");
+var SqlFields_1 = require("../model/SqlFields");
 //const IS_PROD  =  process.env.IS_PROD;
 var MySqlStorageHandler = /** @class */ (function (_super) {
     __extends(MySqlStorageHandler, _super);
@@ -72,34 +73,84 @@ var MySqlStorageHandler = /** @class */ (function (_super) {
             multipleStatements: true
         });
     };
-    MySqlStorageHandler.prototype.insert = function (products, firm) {
-        //insert all products from list
-        if (products.length == 0) {
-            console.log("nothing to insert, products list is empty");
-            return;
-        }
-        //check if firm exist and get id from sql;
-        for (var _i = 0, products_1 = products; _i < products_1.length; _i++) {
-            var product = products_1[_i];
-            //do onDuplicateKey
-            //option: insert 1 by 1 OR build query for all products together
-        }
+    MySqlStorageHandler.prototype.insert = function (products, firm, updateMode) {
+        return __awaiter(this, void 0, void 0, function () {
+            var _i, products_1, product, productMap, newBrand, results, e_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (products.length == 0) {
+                            console.log("nothing to insert, products list is empty");
+                            return [2 /*return*/];
+                        }
+                        _i = 0, products_1 = products;
+                        _a.label = 1;
+                    case 1:
+                        if (!(_i < products_1.length)) return [3 /*break*/, 10];
+                        product = products_1[_i];
+                        productMap = this.prepareNewProductMap(product);
+                        _a.label = 2;
+                    case 2:
+                        _a.trys.push([2, 8, , 9]);
+                        if (!!updateMode) return [3 /*break*/, 6];
+                        newBrand = void 0;
+                        return [4 /*yield*/, this.query("SELECT brand_id FROM brands WHERE brand_name = \"\u05E9\u05D5\u05E4\u05E8\u05E1\u05DC\";")];
+                    case 3:
+                        results = _a.sent();
+                        /*     function (error, rows) {
+                         if(error) throw error;
+                         else{
+                             setResults(rows);
+                         }
+                     });*/
+                        // @ts-ignore
+                        if (results.length > 0) {
+                            newBrand = results.pop();
+                            console.log(newBrand);
+                        }
+                        return [4 /*yield*/, this.query("INSERT INTO products\n                      (barcode, product_name, brand_id, capacity, capacity_unit_id, verifiedCounter)\n                       VALUES\n                      (" + Number(productMap.get(SqlFields_1.SqlFields.BARCODE)) + ", \"" + productMap.get(SqlFields_1.SqlFields.PRODUCT_NAME) + "\", \n                        " + Number(newBrand) + ", " + Number(productMap.get(SqlFields_1.SqlFields.CAPACITY)) + ", \n                        " + Number(productMap.get(SqlFields_1.SqlFields.CAPACITY_UNIT)) + ", 0)\n                       ON DUPLICATE KEY UPDATE verifiedCounter = verifiedCounter + 1;\n                    ")];
+                    case 4:
+                        _a.sent();
+                        return [4 /*yield*/, this.query("INSERT INTO product_category (" + SqlFields_1.ProductCategoryField.BARCODE + ", " + SqlFields_1.ProductCategoryField.CATEGORY_ID + ")\n                        VALUES\n                        (" + productMap.get(SqlFields_1.SqlFields.BARCODE) + ", " + productMap.get(SqlFields_1.SqlFields.CATEGORY) + ")\n                    ")];
+                    case 5:
+                        _a.sent();
+                        _a.label = 6;
+                    case 6: return [4 /*yield*/, this.query("INSERT INTO shopping_cart_prices\n                      (" + SqlFields_1.ShoppingCartField.FIRM_ID + " ," + SqlFields_1.ShoppingCartField.BARCODE + ", " + SqlFields_1.ShoppingCartField.PRICE + ", " + SqlFields_1.ShoppingCartField.LINK + ", " + SqlFields_1.ShoppingCartField.UPDATE_TIME + ")\n                       VALUES\n                      (" + firm + ", \n                       " + productMap.get(SqlFields_1.ShoppingCartField.BARCODE) + ",\n                       " + Number(productMap.get(SqlFields_1.ShoppingCartField.PRICE)) + ", \n                      \"" + productMap.get(SqlFields_1.ShoppingCartField.LINK) + "\",\n                      \"" + productMap.get(SqlFields_1.ShoppingCartField.UPDATE_TIME) + "\")\n                       ON DUPLICATE KEY UPDATE \n                       " + SqlFields_1.ShoppingCartField.PRICE + " = " + productMap.get(SqlFields_1.ShoppingCartField.PRICE) + ",\n                       " + SqlFields_1.ShoppingCartField.UPDATE_TIME + " = \"" + productMap.get(SqlFields_1.ShoppingCartField.UPDATE_TIME) + "\";\n                ")];
+                    case 7:
+                        _a.sent();
+                        return [3 /*break*/, 9];
+                    case 8:
+                        e_1 = _a.sent();
+                        console.log(e_1);
+                        return [3 /*break*/, 9];
+                    case 9:
+                        _i++;
+                        return [3 /*break*/, 1];
+                    case 10:
+                        console.log("update " + products.length + " products price successfully. firm: " + firm);
+                        return [2 /*return*/];
+                }
+            });
+        });
     };
-    MySqlStorageHandler.prototype.sqlQuery = function (query) {
+    MySqlStorageHandler.prototype.query = function (query) {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
             return __generator(this, function (_a) {
                 return [2 /*return*/, new Promise(function (resolve, reject) {
-                        _this._conn.query(query, function (err, cb) {
+                        _this._conn.query(query, function (err, rows) {
                             if (err) {
                                 //console.log(err);
                                 reject(err);
                             }
-                            resolve(cb);
+                            resolve(rows);
                         });
                     })];
             });
         });
+    };
+    MySqlStorageHandler.prototype.close = function () {
+        this._conn.end();
     };
     return MySqlStorageHandler;
 }(StorageHandler_1.StorageHandler));

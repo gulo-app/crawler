@@ -13,7 +13,6 @@ var CapacityUnitConst;
     CapacityUnitConst[CapacityUnitConst["LITER"] = 236] = "LITER";
     CapacityUnitConst[CapacityUnitConst["ML"] = 82] = "ML";
     CapacityUnitConst[CapacityUnitConst["KILOGRAM"] = 108] = "KILOGRAM";
-    CapacityUnitConst[CapacityUnitConst["MILLILITER"] = 85] = "MILLILITER";
 })(CapacityUnitConst = exports.CapacityUnitConst || (exports.CapacityUnitConst = {}));
 var CategoriesConst;
 (function (CategoriesConst) {
@@ -23,5 +22,6 @@ var CategoriesConst;
     CategoriesConst[CategoriesConst["CARE_AND_BABIES"] = 4] = "CARE_AND_BABIES";
     CategoriesConst[CategoriesConst["CLOTHING"] = 5] = "CLOTHING";
     CategoriesConst[CategoriesConst["ELECTRICAL"] = 6] = "ELECTRICAL";
+    CategoriesConst[CategoriesConst["GENERAL"] = 7] = "GENERAL";
 })(CategoriesConst = exports.CategoriesConst || (exports.CategoriesConst = {}));
 //# sourceMappingURL=SqlConsts.js.map

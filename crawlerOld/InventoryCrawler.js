@@ -52,11 +52,6 @@ class InventoryCrawler extends Inventory{
       product.product_name  =   product.product_name.replace(/"/g,"''");
       product.capacity      =   product.capacity || 0;
 
-      if(product.capacity_units_name === 'לקג')
-        product.capacity_units_name = 'קג';
-      else if(product.capacity_units_name === 'יחי')
-        product.capacity_units_name = 'יחידה'
-
       product.category_id = menuIndexParser(product.menuIndex);
 
       if(product.barcode.toString().length<11) //remove all illegal barcode from array

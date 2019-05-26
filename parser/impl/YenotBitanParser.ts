@@ -1,6 +1,6 @@
 import { Parser } from "../Parser";
 import {ParserUrls} from "../ParserUrls";
-import {NewProduct} from "../../crawler/NewProduct";
+import {NewProduct} from "../../product/NewProduct";
 
 export class YenotBitanParser extends Parser {
 

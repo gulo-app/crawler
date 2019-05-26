@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var MySqlStorageHandler_1 = require("../storagehandler/impl/MySqlStorageHandler");
-var ShufersalParser_1 = require("../parser/impl/ShufersalParser");
+var ShufersalParser_1 = require("../parser/impl/shufersal/ShufersalParser");
 var Downloader_1 = require("../downloader/Downloader");
 var SqlConsts_1 = require("../storagehandler/model/SqlConsts");
 var cheerio = require('cheerio');
@@ -88,7 +88,10 @@ var Crawler = /** @class */ (function () {
                         }
                         _a.label = 4;
                     case 4: return [3 /*break*/, 1];
-                    case 5: return [2 /*return*/, newProducts];
+                    case 5: return [4 /*yield*/, this._storageHandler.insert(newProducts, SqlConsts_1.StoresConsts.SHUFERSAL, false)];
+                    case 6:
+                        _a.sent();
+                        return [2 /*return*/, newProducts];
                 }
             });
         });
@@ -129,11 +132,14 @@ var Crawler = /** @class */ (function () {
                         _a++;
                         return [3 /*break*/, 1];
                     case 4:
-                        this._storageHandler.insert(updated, SqlConsts_1.StoresConsts.SHUFERSAL);
+                        this._storageHandler.insert(updated, SqlConsts_1.StoresConsts.SHUFERSAL, true);
                         return [2 /*return*/];
                 }
             });
         });
+    };
+    Crawler.prototype.close = function () {
+        this._storageHandler.close();
     };
     return Crawler;
 }());

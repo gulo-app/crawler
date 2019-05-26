@@ -1,6 +1,8 @@
-import {NewProduct} from "../crawler/NewProduct";
-import {SqlFields} from "./model/SqlFields";
+import {NewProduct} from "../product/NewProduct";
+import {ShoppingCartField, SqlFields} from "./model/SqlFields";
 import {CapacityUnitConst, StoresConsts} from "./model/SqlConsts";
+import {StorageUtils} from "./StorageUtils";
+import {Product} from "../product/Product";
 
 export abstract class StorageHandler {
 
@@ -12,41 +14,40 @@ export abstract class StorageHandler {
 
     abstract openConnection(): any;
 
-    abstract insert(products: Array<NewProduct>, firm: StoresConsts): void;
+    abstract async insert(products: Array<Product>, firm: StoresConsts, updateMode: boolean): Promise<void>;
 
-    public prepareNewProductMap(product: NewProduct): Map<string,object> {
+    public prepareNewProductMap(product: NewProduct): Map<string,string> {
+        let prodMap = this.prepareBasicProduct(product);
+
+        if (typeof product === Product.name) {
+            return prodMap;
+        }
+
+        prodMap.set(SqlFields.PRODUCT_NAME, product.name);
+        prodMap.set(SqlFields.BRAND_NAME, product.brand);
+        if(product.capacity === NaN) {
+            // @ts-ignore
+            product.capacity(0);
+        }
+        prodMap.set(SqlFields.CAPACITY, product.capacity.toString());
+        prodMap.set(ShoppingCartField.LINK, product.url);
+        prodMap.set(SqlFields.CAPACITY_UNIT, StorageUtils.capacityUnitHandler(product.capacityUnit).toString());
+        prodMap.set(SqlFields.CATEGORY, StorageUtils.categoriesHandler(product.category).toString());
+
+        return prodMap;
+    }
+
+    public prepareBasicProduct(product: Product): Map<string,string>{
         let prodMap = new Map();
 
         if (typeof product.barcode === "number") {
             prodMap.set(SqlFields.BARCODE, product.barcode);
         }
 
-        prodMap.set(SqlFields.PRODUCT_NAME, product.name);
-        prodMap.set(SqlFields.BRAND_ID, product.brand);
-        prodMap.set(SqlFields.CAPACITY, product.capacity);
-
-        switch (product.capacityUnit) {
-            case 'גרם':
-                prodMap.set(SqlFields.CAPACITY_UNIT, Number(CapacityUnitConst.GRAM));
-                break;
-            case 'ליטר':
-                prodMap.set(SqlFields.CAPACITY_UNIT, Number(CapacityUnitConst.LITER));
-                break;
-            case 'ק"ג':
-                prodMap.set(SqlFields.CAPACITY_UNIT, Number(CapacityUnitConst.KILOGRAM));
-                break;
-            case '*' || 'יחידות' || 'יחידה':
-                prodMap.set(SqlFields.CAPACITY_UNIT, Number(CapacityUnitConst.UNIT));
-                break;
-            case 'מ"ל':
-                prodMap.set(SqlFields.CAPACITY_UNIT, Number(CapacityUnitConst.MILLILITER));
-                break;
-            default:
-                prodMap.set(SqlFields.CAPACITY_UNIT, Number(CapacityUnitConst.UNIT));
-        }
-
-        //prodMap.set(SqlFields.CATEGORY, product.category);
-
+        prodMap.set(ShoppingCartField.PRICE, product.price);
+        prodMap.set(ShoppingCartField.UPDATE_TIME, product.updateDate);
+        prodMap.set(ShoppingCartField.FIRM_ID, product.firmId.toString());
         return prodMap;
     }
+
 }

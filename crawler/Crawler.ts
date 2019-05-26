@@ -1,21 +1,25 @@
 import {Parser} from "../parser/Parser";
 import {StorageHandler} from "../storagehandler/StorageHandler";
 import {MySqlStorageHandler} from "../storagehandler/impl/MySqlStorageHandler";
-import {ShufersalParser} from "../parser/impl/ShufersalParser";
+import {ShufersalParser} from "../parser/impl/shufersal/ShufersalParser";
 import {Downloader} from "../downloader/Downloader";
-import {NewProduct} from "./NewProduct";
+import {NewProduct} from "../product/NewProduct";
 import {url} from "inspector";
 import {StoresConsts} from "../storagehandler/model/SqlConsts";
+import {RamiLevyParser} from "../parser/impl/RamiLevyParser";
+
 const cheerio = require('cheerio');
 
 export class Crawler {
 
     private _parsersList: Array<Parser>;
-    private _storageHandler: StorageHandler;
+    private _storageHandler: MySqlStorageHandler;
 
     private readonly parsersList = {
         'shufersal.co.il/online/he/A': new ShufersalParser(),
         'shufersal.co.il/online/he/c': new ShufersalParser(),
+        'https://www.rami-levy.co.il/category/start_buy': new RamiLevyParser(),
+        'https://www.rami-levy.co.il/default.asp?catid=': new RamiLevyParser()
     }
 
     constructor(){
@@ -54,9 +58,11 @@ export class Crawler {
             }
         }
 
+        //await this._storageHandler.insert(newProducts, StoresConsts.SHUFERSAL, false);
         return newProducts;
     }
 
+    //TODO: test if works
     public async update(products: Promise<Array<NewProduct>>): Promise<void> {
         let uniqueUrls = [];
         let updated = [];
@@ -80,8 +86,12 @@ export class Crawler {
             }
         }
 
-        this._storageHandler.insert(updated, StoresConsts.SHUFERSAL);
+        this._storageHandler.insert(updated, StoresConsts.SHUFERSAL, true);
         return;
+    }
+
+    public close(): void {
+        this._storageHandler.close();
     }
 
 }
