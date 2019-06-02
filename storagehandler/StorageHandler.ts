@@ -14,7 +14,7 @@ export abstract class StorageHandler {
 
     abstract openConnection(): any;
 
-    abstract async insert(products: Array<Product>, firm: StoresConsts, updateMode: boolean): Promise<void>;
+    abstract async insert(products: Array<Product>, updateMode: boolean): Promise<void>;
 
     public prepareNewProductMap(product: NewProduct): Map<string,string> {
         let prodMap = this.prepareBasicProduct(product);

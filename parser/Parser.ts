@@ -11,7 +11,7 @@ export abstract class Parser {
 
    abstract parse(url: string, $: CheerioStatic, updateMode: boolean, productsId: any): Array<NewProduct>;
 
-   abstract extractUrls(url: string, node: any): Array<string>;
+   abstract extractUrls(url: string, $: CheerioStatic): Array<string>;
 
 }
 

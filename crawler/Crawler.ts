@@ -86,7 +86,7 @@ export class Crawler {
             }
         }
 
-        this._storageHandler.insert(updated, StoresConsts.SHUFERSAL, true);
+        this._storageHandler.insert(updated, true);
         return;
     }
 

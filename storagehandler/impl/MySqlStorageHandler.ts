@@ -1,10 +1,8 @@
 import {StorageHandler} from "../StorageHandler";
 import mysql = require('mysql');
-import {Pool, queryCallback, QueryFunction} from "mysql";
+import {Pool} from "mysql";
 import {NewProduct} from "../../product/NewProduct";
-import {StoresConsts} from "../model/SqlConsts";
 import {ProductCategoryField, ShoppingCartField, SqlFields} from "../model/SqlFields";
-import {Product} from "../../product/Product";
 //const IS_PROD  =  process.env.IS_PROD;
 
 export class MySqlStorageHandler extends StorageHandler{
@@ -33,7 +31,7 @@ export class MySqlStorageHandler extends StorageHandler{
         });
     }
 
-    async insert(products: Array<NewProduct>, firm: StoresConsts, updateMode: boolean): Promise<void> {
+    async insert(products: Array<NewProduct>, updateMode: boolean): Promise<void> {
         if(products.length == 0) {
             console.log("nothing to insert, products list is empty")
             return;
@@ -44,6 +42,7 @@ export class MySqlStorageHandler extends StorageHandler{
 
             try {
                 if (!updateMode) {
+                    //TODO: fix brand insertion
                     let newBrand;
                     let results: [] = await this.query(`SELECT brand_id FROM brands WHERE brand_name = "שופרסל";`);
                        /*     function (error, rows) {
@@ -51,14 +50,12 @@ export class MySqlStorageHandler extends StorageHandler{
                         else{
                             setResults(rows);
                         }
-                    });*/
-
-                    // @ts-ignore
+                    });
 
                     if(results.length > 0){
                         newBrand = results.pop();
                         console.log(newBrand);
-                    }
+                    }*/
 
                     await this.query(
                         `INSERT INTO products
@@ -97,7 +94,7 @@ export class MySqlStorageHandler extends StorageHandler{
             }
         }
 
-        console.log(`update ${products.length} products price successfully. firm: ${firm}`);
+        console.log(`update ${products.length} products prices successfully.`);
         return;
     }
 
