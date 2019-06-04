@@ -9,6 +9,7 @@ import {StoresConsts} from "../storagehandler/model/SqlConsts";
 import {RamiLevyParser} from "../parser/impl/ramilevy/RamiLevyParser";
 import * as path from "path";
 import {JsonStorageHandler} from "../storagehandler/impl/JsonStorageHandler";
+import {SeleniumDownloader} from "../downloader/impl/SeleniumDownloader";
 
 const cheerio = require('cheerio');
 
@@ -49,7 +50,8 @@ export class Crawler {
             let parser = this.findParser(currentUrl);
             console.log("start to crawl in url:  " + currentUrl);
             if(parser){
-                let html = await Downloader.downloadHtml(currentUrl);
+                //let html = await Downloader.downloadHtml(currentUrl);
+                let html = await new SeleniumDownloader().downloadHtml(currentUrl);
                 const $ = await cheerio.load(html);
                 if($){
                     let products = parser.parse(currentUrl, $, false, undefined);
@@ -88,7 +90,7 @@ export class Crawler {
         for(let url in uniqueUrls){
             let parser = this.findParser(url);
             if(parser){
-                const html = await Downloader.downloadHtml(url);
+                const html = await new SeleniumDownloader().downloadHtml(url);
                 const $ = cheerio.load(html);
                 if($){
                     Array.prototype.push.apply(updated, parser.parse(url, $, true, uniqueUrls[url]));

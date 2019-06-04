@@ -36,9 +36,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var ShufersalParser_1 = require("../parser/impl/shufersal/ShufersalParser");
-var Downloader_1 = require("../downloader/Downloader");
 var RamiLevyParser_1 = require("../parser/impl/ramilevy/RamiLevyParser");
 var JsonStorageHandler_1 = require("../storagehandler/impl/JsonStorageHandler");
+var SeleniumDownloader_1 = require("../downloader/impl/SeleniumDownloader");
 var cheerio = require('cheerio');
 var Crawler = /** @class */ (function () {
     function Crawler() {
@@ -76,7 +76,7 @@ var Crawler = /** @class */ (function () {
                         parser = this.findParser(currentUrl);
                         console.log("start to crawl in url:  " + currentUrl);
                         if (!parser) return [3 /*break*/, 4];
-                        return [4 /*yield*/, Downloader_1.Downloader.downloadHtml(currentUrl)];
+                        return [4 /*yield*/, new SeleniumDownloader_1.SeleniumDownloader().downloadHtml(currentUrl)];
                     case 2:
                         html = _a.sent();
                         return [4 /*yield*/, cheerio.load(html)];
@@ -134,7 +134,7 @@ var Crawler = /** @class */ (function () {
                         url_1 = _a[_c];
                         parser = this.findParser(url_1);
                         if (!parser) return [3 /*break*/, 3];
-                        return [4 /*yield*/, Downloader_1.Downloader.downloadHtml(url_1)];
+                        return [4 /*yield*/, new SeleniumDownloader_1.SeleniumDownloader().downloadHtml(url_1)];
                     case 2:
                         html = _d.sent();
                         $ = cheerio.load(html);

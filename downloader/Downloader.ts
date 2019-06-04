@@ -1,13 +1,9 @@
-import request = require('request');
+export abstract class Downloader {
 
-export class Downloader {
+    /**
+     * download html of a given url and return body.
+     * @param url
+     */
+    abstract async downloadHtml(url: string);
 
-    static async downloadHtml(url: string): Promise<any> {
-        return new Promise((resolve, reject) => {
-            request(url, function (err, response, body) {
-                if(err) return reject(err);
-                return resolve(body);
-            });
-        })
-    }
 }
