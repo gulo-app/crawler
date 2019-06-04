@@ -53,6 +53,7 @@ var path = require("path");
 var fs = require("fs");
 var PRODUCTS_OUTPUT = { filename: "products.json", get path() { return path.join(__dirname, '../../output', this.filename); } };
 var PRICES_OUTPUT = { filename: "prices.json", get path() { return path.join(__dirname, '../../output', this.filename); } };
+var TEST_OUTPUT = { filename: "pricestest.json", get path() { return path.join(__dirname, '../../output', this.filename); } };
 var JsonStorageHandler = /** @class */ (function (_super) {
     __extends(JsonStorageHandler, _super);
     function JsonStorageHandler(isProd) {
@@ -63,35 +64,40 @@ var JsonStorageHandler = /** @class */ (function (_super) {
     }
     JsonStorageHandler.prototype.insert = function (products, updateMode) {
         return __awaiter(this, void 0, void 0, function () {
-            var newProductsToInsert, updateProducts, _i, products_1, currProd, barcode, product_name, brand_name, capacity, capacity_units_name, shopping_cart_firm_id, price, link, productNew, updatedProd;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
+            var newProductsToInsert, updateProducts, _i, products_1, currProd, barcode, shopping_cart_firm_id, price, link, updatedProd, _a, products_2, currProd, barcode, product_name, brand_name, capacity, capacity_units_name, productNew;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
                     case 0:
                         newProductsToInsert = [];
                         updateProducts = [];
+                        if (!updateMode) return [3 /*break*/, 2];
                         for (_i = 0, products_1 = products; _i < products_1.length; _i++) {
                             currProd = products_1[_i];
+                            barcode = currProd.barcode;
+                            shopping_cart_firm_id = currProd.firmId;
+                            price = currProd.price;
+                            link = currProd.url;
+                            updatedProd = { barcode: barcode, shopping_cart_firm_id: shopping_cart_firm_id, price: price, link: link };
+                            updateProducts.push(updatedProd);
+                        }
+                        return [4 /*yield*/, this.appendProductsToFile(updateProducts, PRICES_OUTPUT.path)];
+                    case 1:
+                        _b.sent();
+                        return [2 /*return*/];
+                    case 2:
+                        for (_a = 0, products_2 = products; _a < products_2.length; _a++) {
+                            currProd = products_2[_a];
                             barcode = currProd.barcode;
                             product_name = currProd.product_name;
                             brand_name = currProd.brand;
                             capacity = currProd.capacity;
                             capacity_units_name = currProd.capacity_unit;
-                            shopping_cart_firm_id = currProd.firmId;
-                            price = currProd.price;
-                            link = currProd.url;
                             productNew = { barcode: barcode, product_name: product_name, brand_name: brand_name, capacity: capacity, capacity_units_name: capacity_units_name };
                             newProductsToInsert.push(productNew);
-                            updatedProd = { barcode: barcode, shopping_cart_firm_id: shopping_cart_firm_id, price: price, link: link };
-                            updateProducts.push(updatedProd);
                         }
-                        if (!updateMode) return [3 /*break*/, 1];
-                        return [2 /*return*/];
-                    case 1: return [4 /*yield*/, this.appendProductsToFile(newProductsToInsert, PRODUCTS_OUTPUT.path)];
-                    case 2:
-                        _a.sent();
-                        return [4 /*yield*/, this.appendProductsToFile(updateProducts, PRICES_OUTPUT.path)];
+                        return [4 /*yield*/, this.appendProductsToFile(newProductsToInsert, PRODUCTS_OUTPUT.path)];
                     case 3:
-                        _a.sent();
+                        _b.sent();
                         return [2 /*return*/];
                 }
             });
@@ -113,6 +119,17 @@ var JsonStorageHandler = /** @class */ (function (_super) {
                     console.log(e);
                 }
                 return [2 /*return*/];
+            });
+        });
+    };
+    JsonStorageHandler.readProductsFromFile = function (path) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, new Promise(function (resolve, reject) {
+                        var file_products = fs.readFileSync(path, 'utf-8');
+                        file_products = !file_products ? [] : JSON.parse(file_products);
+                        resolve(file_products);
+                    })];
             });
         });
     };

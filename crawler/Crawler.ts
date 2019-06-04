@@ -65,31 +65,33 @@ export class Crawler {
         }
 
         await this._storageHandler.insert(newProducts, false);
-        console.log(newProducts);
+        //console.log(newProducts);
         console.log(newProducts.length);
         return newProducts;
     }
 
     //TODO: test if works
-    public async update(products: Promise<Array<NewProduct>>): Promise<void> {
-        let uniqueUrls = [];
+    public async update(products) {
+        let uniqueUrls = {};
         let updated = [];
         // @ts-ignore
-        for(let url of products){
-            if(uniqueUrls.isPrototypeOf(url['url'])){
-                uniqueUrls[url['url']].append(url['id']);
+        for(let product of products){
+            if(!uniqueUrls.hasOwnProperty(product['link'])){
+                uniqueUrls[product['link']] = [];
+                uniqueUrls[product['link']].push(product['barcode']);
             }
             else {
-                uniqueUrls[url['url']] = [url['id']];
+                uniqueUrls[product['link']].push(product['barcode']);
             }
         }
 
-        for(let url of uniqueUrls){
+        for(let url in uniqueUrls){
             let parser = this.findParser(url);
             if(parser){
-                const $ = await Downloader.downloadHtml(url);
+                const html = await Downloader.downloadHtml(url);
+                const $ = cheerio.load(html);
                 if($){
-                    updated.push(parser.parse(url, $, true, uniqueUrls[url]));
+                    Array.prototype.push.apply(updated, parser.parse(url, $, true, uniqueUrls[url]));
                 }
             }
         }

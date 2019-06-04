@@ -97,7 +97,7 @@ var Crawler = /** @class */ (function () {
                     case 5: return [4 /*yield*/, this._storageHandler.insert(newProducts, false)];
                     case 6:
                         _a.sent();
-                        console.log(newProducts);
+                        //console.log(newProducts);
                         console.log(newProducts.length);
                         return [2 /*return*/, newProducts];
                 }
@@ -107,42 +107,47 @@ var Crawler = /** @class */ (function () {
     //TODO: test if works
     Crawler.prototype.update = function (products) {
         return __awaiter(this, void 0, void 0, function () {
-            var uniqueUrls, updated, _i, products_1, url_1, _a, uniqueUrls_1, url_2, parser, $;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
+            var uniqueUrls, updated, _i, products_1, product, _a, _b, _c, url_1, parser, html, $;
+            return __generator(this, function (_d) {
+                switch (_d.label) {
                     case 0:
-                        uniqueUrls = [];
+                        uniqueUrls = {};
                         updated = [];
                         // @ts-ignore
                         for (_i = 0, products_1 = products; _i < products_1.length; _i++) {
-                            url_1 = products_1[_i];
-                            if (uniqueUrls.isPrototypeOf(url_1['url'])) {
-                                uniqueUrls[url_1['url']].append(url_1['id']);
+                            product = products_1[_i];
+                            if (!uniqueUrls.hasOwnProperty(product['link'])) {
+                                uniqueUrls[product['link']] = [];
+                                uniqueUrls[product['link']].push(product['barcode']);
                             }
                             else {
-                                uniqueUrls[url_1['url']] = [url_1['id']];
+                                uniqueUrls[product['link']].push(product['barcode']);
                             }
                         }
-                        _a = 0, uniqueUrls_1 = uniqueUrls;
-                        _b.label = 1;
+                        _a = [];
+                        for (_b in uniqueUrls)
+                            _a.push(_b);
+                        _c = 0;
+                        _d.label = 1;
                     case 1:
-                        if (!(_a < uniqueUrls_1.length)) return [3 /*break*/, 4];
-                        url_2 = uniqueUrls_1[_a];
-                        parser = this.findParser(url_2);
+                        if (!(_c < _a.length)) return [3 /*break*/, 4];
+                        url_1 = _a[_c];
+                        parser = this.findParser(url_1);
                         if (!parser) return [3 /*break*/, 3];
-                        return [4 /*yield*/, Downloader_1.Downloader.downloadHtml(url_2)];
+                        return [4 /*yield*/, Downloader_1.Downloader.downloadHtml(url_1)];
                     case 2:
-                        $ = _b.sent();
+                        html = _d.sent();
+                        $ = cheerio.load(html);
                         if ($) {
-                            updated.push(parser.parse(url_2, $, true, uniqueUrls[url_2]));
+                            Array.prototype.push.apply(updated, parser.parse(url_1, $, true, uniqueUrls[url_1]));
                         }
-                        _b.label = 3;
+                        _d.label = 3;
                     case 3:
-                        _a++;
+                        _c++;
                         return [3 /*break*/, 1];
                     case 4: return [4 /*yield*/, this._storageHandler.insert(updated, true)];
                     case 5:
-                        _b.sent();
+                        _d.sent();
                         return [2 /*return*/];
                 }
             });
