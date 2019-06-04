@@ -1,30 +1,30 @@
 import {Product} from "./Product";
 
 export class NewProduct extends Product{
-    private _name: string;
+    private _product_name: string;
     private _capacity: number;
-    private _capacityUnit: string;
+    private _capacity_unit: string;
     private _brand: string;
     private _category: string;
-    private _url: string
+    private _url: string;
 
     constructor(barcode: number, name: string, price: number, url: string, capacity: number,
                 capacityUnit: string, brand: string, category: string, firm: number) {
         super(barcode, price, firm);
-        this._name = name;
+        this._product_name = name;
         this._capacity = capacity;
-        this._capacityUnit = capacityUnit;
+        this._capacity_unit = capacityUnit;
         this._brand = brand;
         this._category = category;
         this._url = url;
     }
 
-    get name(): string {
-        return this._name;
+    get product_name(): string {
+        return this._product_name;
     }
 
-    set name(value: string) {
-        this._name = value;
+    set product_name(value: string) {
+        this._product_name = value;
     }
 
     get capacity(): number {
@@ -35,12 +35,12 @@ export class NewProduct extends Product{
         this._capacity = value;
     }
 
-    get capacityUnit(): string {
-        return this._capacityUnit;
+    get capacity_unit(): string {
+        return this._capacity_unit;
     }
 
-    set capacityUnit(value: string) {
-        this._capacityUnit = value;
+    set capacity_unit(value: string) {
+        this._capacity_unit = value;
     }
 
     get brand(): string {

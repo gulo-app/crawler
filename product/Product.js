@@ -2,10 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var moment = require('moment');
 var Product = /** @class */ (function () {
-    function Product(barcode, price) {
+    function Product(barcode, price, firmId) {
         this._barcode = barcode;
         this._price = price;
-        this._updateDate = moment().format('YYYY:MM:DD hh:mm:ss'); //new Date(Date.now()).toISOString();
+        this._firmId = firmId;
     }
     Object.defineProperty(Product.prototype, "barcode", {
         get: function () {
@@ -27,12 +27,12 @@ var Product = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Product.prototype, "updateDate", {
+    Object.defineProperty(Product.prototype, "firmId", {
         get: function () {
-            return this._updateDate;
+            return this._firmId;
         },
         set: function (value) {
-            this._updateDate = value;
+            this._firmId = value;
         },
         enumerable: true,
         configurable: true

@@ -16,22 +16,22 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var Product_1 = require("./Product");
 var NewProduct = /** @class */ (function (_super) {
     __extends(NewProduct, _super);
-    function NewProduct(barcode, name, price, url, capacity, capacityUnit, brand, category) {
-        var _this = _super.call(this, barcode, price) || this;
-        _this._name = name;
+    function NewProduct(barcode, name, price, url, capacity, capacityUnit, brand, category, firm) {
+        var _this = _super.call(this, barcode, price, firm) || this;
+        _this._product_name = name;
         _this._capacity = capacity;
-        _this._capacityUnit = capacityUnit;
+        _this._capacity_unit = capacityUnit;
         _this._brand = brand;
         _this._category = category;
         _this._url = url;
         return _this;
     }
-    Object.defineProperty(NewProduct.prototype, "name", {
+    Object.defineProperty(NewProduct.prototype, "product_name", {
         get: function () {
-            return this._name;
+            return this._product_name;
         },
         set: function (value) {
-            this._name = value;
+            this._product_name = value;
         },
         enumerable: true,
         configurable: true
@@ -46,12 +46,12 @@ var NewProduct = /** @class */ (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(NewProduct.prototype, "capacityUnit", {
+    Object.defineProperty(NewProduct.prototype, "capacity_unit", {
         get: function () {
-            return this._capacityUnit;
+            return this._capacity_unit;
         },
         set: function (value) {
-            this._capacityUnit = value;
+            this._capacity_unit = value;
         },
         enumerable: true,
         configurable: true
