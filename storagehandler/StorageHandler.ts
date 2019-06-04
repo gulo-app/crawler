@@ -1,6 +1,5 @@
 import {NewProduct} from "../product/NewProduct";
 import {ShoppingCartField, SqlFields} from "./model/SqlFields";
-import {CapacityUnitConst, StoresConsts} from "./model/SqlConsts";
 import {StorageUtils} from "./StorageUtils";
 import {Product} from "../product/Product";
 
@@ -23,7 +22,7 @@ export abstract class StorageHandler {
             return prodMap;
         }
 
-        prodMap.set(SqlFields.PRODUCT_NAME, product.name);
+        prodMap.set(SqlFields.PRODUCT_NAME, product.product_name);
         prodMap.set(SqlFields.BRAND_NAME, product.brand);
         if(product.capacity === NaN) {
             // @ts-ignore
@@ -31,7 +30,7 @@ export abstract class StorageHandler {
         }
         prodMap.set(SqlFields.CAPACITY, product.capacity.toString());
         prodMap.set(ShoppingCartField.LINK, product.url);
-        prodMap.set(SqlFields.CAPACITY_UNIT, StorageUtils.capacityUnitHandler(product.capacityUnit).toString());
+        prodMap.set(SqlFields.CAPACITY_UNIT, StorageUtils.capacityUnitHandler(product.capacity_unit).toString());
         prodMap.set(SqlFields.CATEGORY, StorageUtils.categoriesHandler(product.category).toString());
 
         return prodMap;
@@ -45,7 +44,6 @@ export abstract class StorageHandler {
         }
 
         prodMap.set(ShoppingCartField.PRICE, product.price);
-        prodMap.set(ShoppingCartField.UPDATE_TIME, product.updateDate);
         prodMap.set(ShoppingCartField.FIRM_ID, product.firmId.toString());
         return prodMap;
     }

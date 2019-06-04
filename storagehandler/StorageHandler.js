@@ -12,7 +12,7 @@ var StorageHandler = /** @class */ (function () {
         if (typeof product === Product_1.Product.name) {
             return prodMap;
         }
-        prodMap.set(SqlFields_1.SqlFields.PRODUCT_NAME, product.name);
+        prodMap.set(SqlFields_1.SqlFields.PRODUCT_NAME, product.product_name);
         prodMap.set(SqlFields_1.SqlFields.BRAND_NAME, product.brand);
         if (product.capacity === NaN) {
             // @ts-ignore
@@ -20,7 +20,7 @@ var StorageHandler = /** @class */ (function () {
         }
         prodMap.set(SqlFields_1.SqlFields.CAPACITY, product.capacity.toString());
         prodMap.set(SqlFields_1.ShoppingCartField.LINK, product.url);
-        prodMap.set(SqlFields_1.SqlFields.CAPACITY_UNIT, StorageUtils_1.StorageUtils.capacityUnitHandler(product.capacityUnit).toString());
+        prodMap.set(SqlFields_1.SqlFields.CAPACITY_UNIT, StorageUtils_1.StorageUtils.capacityUnitHandler(product.capacity_unit).toString());
         prodMap.set(SqlFields_1.SqlFields.CATEGORY, StorageUtils_1.StorageUtils.categoriesHandler(product.category).toString());
         return prodMap;
     };
@@ -30,7 +30,7 @@ var StorageHandler = /** @class */ (function () {
             prodMap.set(SqlFields_1.SqlFields.BARCODE, product.barcode);
         }
         prodMap.set(SqlFields_1.ShoppingCartField.PRICE, product.price);
-        prodMap.set(SqlFields_1.ShoppingCartField.UPDATE_TIME, product.updateDate);
+        prodMap.set(SqlFields_1.ShoppingCartField.FIRM_ID, product.firmId.toString());
         return prodMap;
     };
     return StorageHandler;

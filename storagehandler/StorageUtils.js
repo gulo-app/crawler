@@ -19,7 +19,7 @@ var StorageUtils = /** @class */ (function () {
     };
     StorageUtils.capacityUnitHandler = function (unit) {
         switch (unit) {
-            case 'גרם':
+            case 'גרם' || 'לגר' || 'גר':
                 return SqlConsts_1.CapacityUnitConst.GRAM;
                 break;
             case 'ליטר':

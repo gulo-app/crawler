@@ -73,7 +73,7 @@ var MySqlStorageHandler = /** @class */ (function (_super) {
             multipleStatements: true
         });
     };
-    MySqlStorageHandler.prototype.insert = function (products, firm, updateMode) {
+    MySqlStorageHandler.prototype.insert = function (products, updateMode) {
         return __awaiter(this, void 0, void 0, function () {
             var _i, products_1, product, productMap, newBrand, results, e_1;
             return __generator(this, function (_a) {
@@ -102,20 +102,31 @@ var MySqlStorageHandler = /** @class */ (function (_super) {
                          else{
                              setResults(rows);
                          }
-                     });*/
-                        // @ts-ignore
-                        if (results.length > 0) {
-                            newBrand = results.pop();
-                            console.log(newBrand);
-                        }
+                     });
+ 
+                     if(results.length > 0){
+                         newBrand = results.pop();
+                         console.log(newBrand);
+                     }*/
                         return [4 /*yield*/, this.query("INSERT INTO products\n                      (barcode, product_name, brand_id, capacity, capacity_unit_id, verifiedCounter)\n                       VALUES\n                      (" + Number(productMap.get(SqlFields_1.SqlFields.BARCODE)) + ", \"" + productMap.get(SqlFields_1.SqlFields.PRODUCT_NAME) + "\", \n                        " + Number(newBrand) + ", " + Number(productMap.get(SqlFields_1.SqlFields.CAPACITY)) + ", \n                        " + Number(productMap.get(SqlFields_1.SqlFields.CAPACITY_UNIT)) + ", 0)\n                       ON DUPLICATE KEY UPDATE verifiedCounter = verifiedCounter + 1;\n                    ")];
                     case 4:
+                        /*     function (error, rows) {
+                         if(error) throw error;
+                         else{
+                             setResults(rows);
+                         }
+                     });
+ 
+                     if(results.length > 0){
+                         newBrand = results.pop();
+                         console.log(newBrand);
+                     }*/
                         _a.sent();
                         return [4 /*yield*/, this.query("INSERT INTO product_category (" + SqlFields_1.ProductCategoryField.BARCODE + ", " + SqlFields_1.ProductCategoryField.CATEGORY_ID + ")\n                        VALUES\n                        (" + productMap.get(SqlFields_1.SqlFields.BARCODE) + ", " + productMap.get(SqlFields_1.SqlFields.CATEGORY) + ")\n                    ")];
                     case 5:
                         _a.sent();
                         _a.label = 6;
-                    case 6: return [4 /*yield*/, this.query("INSERT INTO shopping_cart_prices\n                      (" + SqlFields_1.ShoppingCartField.FIRM_ID + " ," + SqlFields_1.ShoppingCartField.BARCODE + ", " + SqlFields_1.ShoppingCartField.PRICE + ", " + SqlFields_1.ShoppingCartField.LINK + ", " + SqlFields_1.ShoppingCartField.UPDATE_TIME + ")\n                       VALUES\n                      (" + firm + ", \n                       " + productMap.get(SqlFields_1.ShoppingCartField.BARCODE) + ",\n                       " + Number(productMap.get(SqlFields_1.ShoppingCartField.PRICE)) + ", \n                      \"" + productMap.get(SqlFields_1.ShoppingCartField.LINK) + "\",\n                      \"" + productMap.get(SqlFields_1.ShoppingCartField.UPDATE_TIME) + "\")\n                       ON DUPLICATE KEY UPDATE \n                       " + SqlFields_1.ShoppingCartField.PRICE + " = " + productMap.get(SqlFields_1.ShoppingCartField.PRICE) + ",\n                       " + SqlFields_1.ShoppingCartField.UPDATE_TIME + " = \"" + productMap.get(SqlFields_1.ShoppingCartField.UPDATE_TIME) + "\";\n                ")];
+                    case 6: return [4 /*yield*/, this.query("INSERT INTO shopping_cart_prices\n                      (" + SqlFields_1.ShoppingCartField.FIRM_ID + " ," + SqlFields_1.ShoppingCartField.BARCODE + ", " + SqlFields_1.ShoppingCartField.PRICE + ", " + SqlFields_1.ShoppingCartField.LINK + ")\n                       VALUES\n                      (" + Number(productMap.get(SqlFields_1.ShoppingCartField.FIRM_ID)) + ", \n                       " + productMap.get(SqlFields_1.ShoppingCartField.BARCODE) + ",\n                       " + Number(productMap.get(SqlFields_1.ShoppingCartField.PRICE)) + ", \n                      \"" + productMap.get(SqlFields_1.ShoppingCartField.LINK) + "\"\n                       ON DUPLICATE KEY UPDATE \n                       " + SqlFields_1.ShoppingCartField.PRICE + " = " + productMap.get(SqlFields_1.ShoppingCartField.PRICE) + ";\n                     ")];
                     case 7:
                         _a.sent();
                         return [3 /*break*/, 9];
@@ -127,7 +138,7 @@ var MySqlStorageHandler = /** @class */ (function (_super) {
                         _i++;
                         return [3 /*break*/, 1];
                     case 10:
-                        console.log("update " + products.length + " products price successfully. firm: " + firm);
+                        console.log("update " + products.length + " products prices successfully.");
                         return [2 /*return*/];
                 }
             });

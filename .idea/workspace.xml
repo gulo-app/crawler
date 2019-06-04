@@ -2,13 +2,46 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6240b597-5f86-4c02-be86-349562a33d98" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/storagehandler/impl/JsonStorageHandler.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/output/prices.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/output/pricestest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/output/products.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crawlerOld/products/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser/Parser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/parser/Parser.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser/impl/RamiLevyParser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/parser/impl/RamiLevyParser.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crawler/Crawler.js" beforeDir="false" afterPath="$PROJECT_DIR$/crawler/Crawler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crawler/Crawler.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/crawler/Crawler.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crawler/Crawler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/crawler/Crawler.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crawler/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/crawler/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crawler/index.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/crawler/index.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crawler/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/crawler/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parser/ParserUrls.js" beforeDir="false" afterPath="$PROJECT_DIR$/parser/ParserUrls.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parser/ParserUrls.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/parser/ParserUrls.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parser/impl/RamiLevyParser.js" beforeDir="false" afterPath="$PROJECT_DIR$/parser/impl/ramilevy/RamiLevyParser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parser/impl/RamiLevyParser.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/parser/impl/ramilevy/RamiLevyParser.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parser/impl/RamiLevyParser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/parser/impl/ramilevy/RamiLevyParser.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parser/impl/YenotBitanParser.js" beforeDir="false" afterPath="$PROJECT_DIR$/parser/impl/YenotBitanParser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parser/impl/YenotBitanParser.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/parser/impl/YenotBitanParser.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parser/impl/YenotBitanParser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/parser/impl/YenotBitanParser.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parser/impl/shufersal/ShufersalParser.js" beforeDir="false" afterPath="$PROJECT_DIR$/parser/impl/shufersal/ShufersalParser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parser/impl/shufersal/ShufersalParser.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/parser/impl/shufersal/ShufersalParser.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parser/impl/shufersal/ShufersalParser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/parser/impl/shufersal/ShufersalParser.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product/NewProduct.js" beforeDir="false" afterPath="$PROJECT_DIR$/product/NewProduct.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product/NewProduct.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/product/NewProduct.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product/NewProduct.ts" beforeDir="false" afterPath="$PROJECT_DIR$/product/NewProduct.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product/Product.js" beforeDir="false" afterPath="$PROJECT_DIR$/product/Product.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product/Product.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/product/Product.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product/Product.ts" beforeDir="false" afterPath="$PROJECT_DIR$/product/Product.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storagehandler/StorageHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/storagehandler/StorageHandler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storagehandler/StorageHandler.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/storagehandler/StorageHandler.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storagehandler/StorageHandler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/storagehandler/StorageHandler.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storagehandler/StorageUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/storagehandler/StorageUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storagehandler/StorageUtils.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/storagehandler/StorageUtils.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storagehandler/StorageUtils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/storagehandler/StorageUtils.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storagehandler/impl/JsonStorageHandler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/storagehandler/impl/JsonStorageHandler.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storagehandler/impl/MySqlStorageHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/storagehandler/impl/MySqlStorageHandler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storagehandler/impl/MySqlStorageHandler.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/storagehandler/impl/MySqlStorageHandler.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storagehandler/impl/MySqlStorageHandler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/storagehandler/impl/MySqlStorageHandler.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storagehandler/model/SqlFields.js" beforeDir="false" afterPath="$PROJECT_DIR$/storagehandler/model/SqlFields.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storagehandler/model/SqlFields.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/storagehandler/model/SqlFields.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storagehandler/model/SqlFields.ts" beforeDir="false" afterPath="$PROJECT_DIR$/storagehandler/model/SqlFields.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -24,8 +57,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/parser/impl/shufersal/ShufersalParser.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="107">
-              <caret line="59" column="39" lean-forward="true" selection-start-line="59" selection-start-column="39" selection-end-line="59" selection-end-column="39" />
+            <state relative-caret-position="918">
+              <caret line="82" column="25" lean-forward="true" selection-start-line="82" selection-start-column="25" selection-end-line="82" selection-end-column="25" />
               <folding>
                 <element signature="e#36#74#0" expanded="true" />
               </folding>
@@ -33,47 +66,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/parser/impl/RamiLevyParser.ts">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/parser/impl/ramilevy/RamiLevyParser.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="603">
-              <caret line="119" column="33" selection-start-line="119" selection-start-column="33" selection-end-line="119" selection-end-column="33" />
+            <state relative-caret-position="210">
+              <caret line="97" column="5" lean-forward="true" selection-start-line="97" selection-start-column="5" selection-end-line="97" selection-end-column="5" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/product/NewProduct.ts">
+        <entry file="file://$PROJECT_DIR$/crawler/Crawler.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="42" lean-forward="true" selection-start-line="15" selection-start-column="42" selection-end-line="15" selection-end-column="42" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/product/Product.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="30" lean-forward="true" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/crawlerOld/products/ramiLevy/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-264">
-              <caret line="73" column="35" selection-start-line="73" selection-start-column="22" selection-end-line="73" selection-end-column="35" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/crawler/index.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="96" selection-start-line="9" selection-start-column="48" selection-end-line="9" selection-end-column="96" />
+            <state relative-caret-position="201">
+              <caret line="12" column="35" lean-forward="true" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
+              <folding>
+                <element signature="e#0#40#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -81,11 +90,57 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/storagehandler/impl/JsonStorageHandler.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="277">
-              <caret line="27" column="12" lean-forward="true" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="12" />
+            <state relative-caret-position="85">
+              <caret line="5" column="97" lean-forward="true" selection-start-line="5" selection-start-column="97" selection-end-line="5" selection-end-column="97" />
               <folding>
                 <element signature="e#0#49#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/output/prices.json">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/output/pricestest.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="13" selection-start-column="13" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/crawlerOld/products/ramiLevy/output/products.json">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/crawlerOld/products/ramiLevy/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="82">
+              <caret line="131" column="26" selection-start-line="131" selection-start-column="26" selection-end-line="131" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/product/Product.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="459">
+              <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/crawler/index.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -121,7 +176,6 @@
         <option value="$PROJECT_DIR$/tsconfig.json" />
         <option value="$PROJECT_DIR$/storagehandler/impl/MySqlStorageHandler" />
         <option value="$PROJECT_DIR$/crawlerOld/products/ramiLevy/index.js" />
-        <option value="$PROJECT_DIR$/parser/impl/YenotBitanParser.ts" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/crawler/index.js" />
         <option value="$PROJECT_DIR$/crawler/Crawler.js" />
@@ -138,22 +192,26 @@
         <option value="$PROJECT_DIR$/parser/ShufersalFieldMap.ts" />
         <option value="$PROJECT_DIR$/storagehandler/model/SqlConsts.ts" />
         <option value="$PROJECT_DIR$/parser/ShufersalFieldsMap.ts" />
-        <option value="$PROJECT_DIR$/storagehandler/StorageUtils.ts" />
         <option value="$PROJECT_DIR$/crawlerOld/InventoryCrawler.js" />
         <option value="$PROJECT_DIR$/product/Product.ts.css" />
         <option value="$PROJECT_DIR$/product/UpdatedProduct.ts" />
-        <option value="$PROJECT_DIR$/storagehandler/model/SqlFields.ts" />
         <option value="$PROJECT_DIR$/parser/ParserUrls.ts" />
-        <option value="$PROJECT_DIR$/crawler/index.ts" />
-        <option value="$PROJECT_DIR$/crawler/Crawler.ts" />
-        <option value="$PROJECT_DIR$/product/Product.ts" />
-        <option value="$PROJECT_DIR$/product/NewProduct.ts" />
-        <option value="$PROJECT_DIR$/parser/impl/shufersal/ShufersalParser.ts" />
         <option value="$PROJECT_DIR$/parser/Parser.ts" />
-        <option value="$PROJECT_DIR$/storagehandler/StorageHandler.ts" />
-        <option value="$PROJECT_DIR$/storagehandler/impl/MySqlStorageHandler.ts" />
-        <option value="$PROJECT_DIR$/storagehandler/impl/JsonStorageHandler.ts" />
         <option value="$PROJECT_DIR$/parser/impl/RamiLevyParser.ts" />
+        <option value="$PROJECT_DIR$/product/Product.ts" />
+        <option value="$PROJECT_DIR$/storagehandler/StorageUtils.ts" />
+        <option value="$PROJECT_DIR$/storagehandler/model/SqlFields.ts" />
+        <option value="$PROJECT_DIR$/storagehandler/impl/MySqlStorageHandler.ts" />
+        <option value="$PROJECT_DIR$/storagehandler/StorageHandler.ts" />
+        <option value="$PROJECT_DIR$/product/NewProduct.ts" />
+        <option value="$PROJECT_DIR$/parser/impl/ramilevy/RamiLevyParser.ts" />
+        <option value="$PROJECT_DIR$/parser/impl/YenotBitanParser.ts" />
+        <option value="$PROJECT_DIR$/crawler/index.ts" />
+        <option value="$PROJECT_DIR$/parser/impl/shufersal/ShufersalParser.ts" />
+        <option value="$PROJECT_DIR$/crawler/Crawler.ts" />
+        <option value="$PROJECT_DIR$/storagehandler/impl/JsonStorageHandler.ts" />
+        <option value="$PROJECT_DIR$/output/prices.json" />
+        <option value="$PROJECT_DIR$/output/pricestest.json" />
       </list>
     </option>
   </component>
@@ -204,13 +262,6 @@
               <item name="crawler" type="462c0819:PsiDirectoryNode" />
               <item name="crawlerOld" type="462c0819:PsiDirectoryNode" />
               <item name="products" type="462c0819:PsiDirectoryNode" />
-              <item name="output" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="crawler" type="b2602c69:ProjectViewProjectNode" />
-              <item name="crawler" type="462c0819:PsiDirectoryNode" />
-              <item name="crawlerOld" type="462c0819:PsiDirectoryNode" />
-              <item name="products" type="462c0819:PsiDirectoryNode" />
               <item name="ramiLevy" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -229,6 +280,11 @@
             <path>
               <item name="crawler" type="b2602c69:ProjectViewProjectNode" />
               <item name="crawler" type="462c0819:PsiDirectoryNode" />
+              <item name="output" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="crawler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="crawler" type="462c0819:PsiDirectoryNode" />
               <item name="parser" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -236,6 +292,13 @@
               <item name="crawler" type="462c0819:PsiDirectoryNode" />
               <item name="parser" type="462c0819:PsiDirectoryNode" />
               <item name="impl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="crawler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="crawler" type="462c0819:PsiDirectoryNode" />
+              <item name="parser" type="462c0819:PsiDirectoryNode" />
+              <item name="impl" type="462c0819:PsiDirectoryNode" />
+              <item name="ramilevy" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="crawler" type="b2602c69:ProjectViewProjectNode" />
@@ -260,6 +323,12 @@
               <item name="storagehandler" type="462c0819:PsiDirectoryNode" />
               <item name="impl" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="crawler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="crawler" type="462c0819:PsiDirectoryNode" />
+              <item name="storagehandler" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -276,6 +345,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ligal\Desktop\projects\GuloApplication\crawler\parser\impl\ramilevy" />
       <recent name="C:\Users\ligal\Desktop\projects\GuloApplication\crawler\product" />
       <recent name="C:\Users\ligal\Desktop\projects\GuloApplication\crawler\parser\impl\shufersal" />
       <recent name="C:\Users\ligal\Desktop\projects\GuloApplication\crawler\crawlerOld" />
@@ -320,12 +390,12 @@
       <option name="presentableId" value="Default" />
       <updated>1557344552287</updated>
       <workItem from="1557344555456" duration="15559000" />
-      <workItem from="1557500689054" duration="119483000" />
+      <workItem from="1557500689054" duration="139734000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="135042000" />
+    <option name="totallyTimeSpent" value="155293000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -345,17 +415,17 @@
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.20603907" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.40497336" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.44404975" />
+      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.20248668" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.6625222" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.38898757" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3285968" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.3285968" />
-      <window_info anchor="bottom" id="TypeScript" order="9" weight="0.3285968" />
+      <window_info anchor="bottom" id="TypeScript" order="9" weight="0.32827735" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.19182949" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.29662523" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -420,64 +490,163 @@
         <option value="$PROJECT_DIR$/product/Product.js.map" />
         <option value="$PROJECT_DIR$/parser/impl/shufersal/ShufersalFieldsMap.js.map" />
         <option value="$PROJECT_DIR$/parser/impl/shufersal/ShufersalFieldsMap.js" />
+        <option value="$PROJECT_DIR$/storagehandler/impl/JsonStorageHandler.js" />
+        <option value="$PROJECT_DIR$/storagehandler/impl/JsonStorageHandler.js.map" />
       </list>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/parser/impl/ramilevy/RamiLevyParser.ts</url>
+          <line>36</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="38" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/parser/impl/ramilevy/RamiLevyParser.ts</url>
+          <line>56</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="39" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/parser/impl/ramilevy/RamiLevyParser.ts</url>
+          <line>59</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="40" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/parser/impl/ramilevy/RamiLevyParser.ts</url>
+          <line>72</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="41" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/crawler/Crawler.ts</url>
+          <line>54</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="42" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/parser/impl/ramilevy/RamiLevyParser.ts</url>
+          <line>65</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="45" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/parser/impl/ramilevy/RamiLevyParser.ts</url>
+          <line>63</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/parser/impl/ramilevy/RamiLevyParser.ts</url>
+          <line>128</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="47" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/parser/impl/ramilevy/RamiLevyParser.ts</url>
+          <line>129</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="48" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/parser/impl/shufersal/ShufersalParser.ts</url>
+          <line>31</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="49" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/parser/impl/shufersal/ShufersalParser.ts</url>
+          <line>33</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="50" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/crawler/index.ts</url>
+          <line>5</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="52" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/crawler/Crawler.ts</url>
+          <line>74</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="53" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/crawler/Crawler.ts</url>
+          <line>77</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="54" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/crawler/Crawler.ts</url>
+          <line>78</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="55" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/crawler/index.ts</url>
+          <line>4</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="56" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/crawler/Crawler.ts</url>
+          <line>69</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="57" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateCodeFragment">
       <expression>
-        <expression-string>this.sqlQuery(`SELECT brand_id FROM gulo.brands WHERE brand_name = &quot;שופרסל&quot;;
-                    `);</expression-string>
+        <expression-string>$('.product_item')</expression-string>
         <language-id>TypeScript</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>newBrand.</expression-string>
+        <expression-string>$('.product_details')</expression-string>
         <language-id>TypeScript</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>newBrand</expression-string>
+        <expression-string>$('.product_item').toArray()</expression-string>
         <language-id>TypeScript</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>newBrand.arguments</expression-string>
+        <expression-string>$('div.container &gt; .product_item').toArray()</expression-string>
         <language-id>TypeScript</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>let res = this.sqlQuery(`SELECT brand_id FROM gulo.brands WHERE brand_name = &quot;שופרסל&quot;;
-                    `);</expression-string>
+        <expression-string>$('div.product').toArray()</expression-string>
         <language-id>TypeScript</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>this.sqlQuery(`INSERT INTO brands (brand_name) VALUES (&quot;שופר&quot;)
-                                 ON DUPLICATE KEY UPDATE brand_id = LAST_INSERT_ID(brand_id);
-                    `);</expression-string>
+        <expression-string>$('div.main_container').toArray()</expression-string>
         <language-id>TypeScript</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>this.sqlQuery(`INSERT INTO brands (brand_name) VALUES (&quot;${productMap.get(SqlFields.BRAND_NAME)}&quot;)
-                                 ON DUPLICATE KEY UPDATE brand_id = LAST_INSERT_ID(brand_id);
-                    `);</expression-string>
+        <expression-string>$('div.main_container')</expression-string>
         <language-id>TypeScript</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>this.sqlQuery(`INSERT INTO brands (brand_name) VALUES (&quot;שופרסל&quot;)
-                                 ON DUPLICATE KEY UPDATE brand_id = LAST_INSERT_ID(brand_id);
-                    `);</expression-string>
+        <expression-string>$('div')</expression-string>
         <language-id>TypeScript</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>let newBrand  =
-                        this.sqlQuery(`INSERT INTO brands (brand_name) VALUES (&quot;${productMap.get(SqlFields.BRAND_NAME)}&quot;)
-                                 ON DUPLICATE KEY UPDATE brand_id = LAST_INSERT_ID(brand_id);
-                    `);</expression-string>
+        <expression-string>$('div.product_item')</expression-string>
         <language-id>TypeScript</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
@@ -563,16 +732,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/parser/impl/YenotBitanParser.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="9" column="5" lean-forward="true" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tsconfig.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -640,13 +799,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/crawler/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/@types/node/index.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -654,27 +806,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/storagehandler/model/SqlConsts.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="14" column="27" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/parser/impl/shufersal/ShufersalFieldsMap.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/storagehandler/StorageUtils.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
-          <folding>
-            <element signature="e#0#69#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -730,13 +865,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/storagehandler/model/SqlFields.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="1" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/crawlerOld/InventoryCrawler.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-106">
@@ -768,16 +896,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/crawler/Crawler.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="48" selection-start-line="15" selection-start-column="48" selection-end-line="15" selection-end-column="48" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/crawlerOld/products/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -799,84 +917,148 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/parser/impl/shufersal/ShufersalParser.ts">
+    <entry file="file://$PROJECT_DIR$/storagehandler/StorageUtils.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="107">
-          <caret line="59" column="39" lean-forward="true" selection-start-line="59" selection-start-column="39" selection-end-line="59" selection-end-column="39" />
+        <state relative-caret-position="374">
+          <caret line="22" column="46" lean-forward="true" selection-start-line="22" selection-start-column="46" selection-end-line="22" selection-end-column="46" />
           <folding>
-            <element signature="e#36#74#0" expanded="true" />
+            <element signature="e#0#69#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/storagehandler/model/SqlConsts.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/storagehandler/model/SqlFields.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/storagehandler/StorageHandler.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="43" lean-forward="true" selection-start-line="3" selection-start-column="43" selection-end-line="3" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/crawler/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="33" lean-forward="true" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/storagehandler/impl/MySqlStorageHandler.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1190">
+          <caret line="83" column="65" lean-forward="true" selection-start-line="83" selection-start-column="65" selection-end-line="83" selection-end-column="65" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/product/NewProduct.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="25" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/parser/impl/ramilevy/RamiLevyParser.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="97" column="5" lean-forward="true" selection-start-line="97" selection-start-column="5" selection-end-line="97" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/parser/impl/YenotBitanParser.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="5" lean-forward="true" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/product/Product.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="30" lean-forward="true" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
+        <state relative-caret-position="459">
+          <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/storagehandler/StorageHandler.ts">
+    <entry file="file://$PROJECT_DIR$/crawlerOld/products/ramiLevy/output/tmp_products.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/crawlerOld/products/ramiLevy/output/products.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/crawlerOld/products/ramiLevy/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="39">
-          <caret line="16" column="50" selection-start-line="16" selection-start-column="50" selection-end-line="16" selection-end-column="50" />
+        <state relative-caret-position="82">
+          <caret line="131" column="26" selection-start-line="131" selection-start-column="26" selection-end-line="131" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/parser/impl/shufersal/ShufersalParser.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="918">
+          <caret line="82" column="25" lean-forward="true" selection-start-line="82" selection-start-column="25" selection-end-line="82" selection-end-column="25" />
           <folding>
-            <element signature="e#0#49#0" expanded="true" />
+            <element signature="e#36#74#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/crawler/Crawler.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="12" column="35" lean-forward="true" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/crawler/index.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="96" selection-start-line="9" selection-start-column="48" selection-end-line="9" selection-end-column="96" />
+        <state relative-caret-position="85">
+          <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/crawlerOld/products/ramiLevy/output/products.json">
+    <entry file="file://$PROJECT_DIR$/output/products.json">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/crawlerOld/products/ramiLevy/output/tmp_products.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/storagehandler/impl/MySqlStorageHandler.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="64" column="43" selection-start-line="64" selection-start-column="24" selection-end-line="64" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#49#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/storagehandler/impl/JsonStorageHandler.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="27" column="12" lean-forward="true" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="12" />
+        <state relative-caret-position="85">
+          <caret line="5" column="97" lean-forward="true" selection-start-line="5" selection-start-column="97" selection-end-line="5" selection-end-column="97" />
           <folding>
             <element signature="e#0#49#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/crawlerOld/products/ramiLevy/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-264">
-          <caret line="73" column="35" selection-start-line="73" selection-start-column="22" selection-end-line="73" selection-end-column="35" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/output/prices.json">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/product/NewProduct.ts">
+    <entry file="file://$PROJECT_DIR$/output/pricestest.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="42" lean-forward="true" selection-start-line="15" selection-start-column="42" selection-end-line="15" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/parser/impl/RamiLevyParser.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="603">
-          <caret line="119" column="33" selection-start-line="119" selection-start-column="33" selection-end-line="119" selection-end-column="33" />
+        <state>
+          <caret column="13" selection-start-column="13" selection-end-column="13" />
         </state>
       </provider>
     </entry>

@@ -35,18 +35,21 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var MySqlStorageHandler_1 = require("../storagehandler/impl/MySqlStorageHandler");
 var ShufersalParser_1 = require("../parser/impl/shufersal/ShufersalParser");
 var Downloader_1 = require("../downloader/Downloader");
-var SqlConsts_1 = require("../storagehandler/model/SqlConsts");
+var RamiLevyParser_1 = require("../parser/impl/ramilevy/RamiLevyParser");
+var JsonStorageHandler_1 = require("../storagehandler/impl/JsonStorageHandler");
 var cheerio = require('cheerio');
 var Crawler = /** @class */ (function () {
     function Crawler() {
         this.parsersList = {
             'shufersal.co.il/online/he/A': new ShufersalParser_1.ShufersalParser(),
             'shufersal.co.il/online/he/c': new ShufersalParser_1.ShufersalParser(),
+            'https://www.rami-levy.co.il/category/start_buy': new RamiLevyParser_1.RamiLevyParser(),
+            'https://www.rami-levy.co.il/default.asp?catid=': new RamiLevyParser_1.RamiLevyParser()
         };
-        this._storageHandler = new MySqlStorageHandler_1.MySqlStorageHandler(false);
+        this._storageHandler = new JsonStorageHandler_1.JsonStorageHandler(false);
+        this._finishedParseList = new Array();
     }
     Crawler.prototype.findParser = function (url) {
         for (var key in this.parsersList) {
@@ -68,6 +71,8 @@ var Crawler = /** @class */ (function () {
                     case 1:
                         if (!urlsToCrawl.length) return [3 /*break*/, 5];
                         currentUrl = urlsToCrawl.pop();
+                        if (this._finishedParseList.indexOf(currentUrl) != -1)
+                            return [3 /*break*/, 1];
                         parser = this.findParser(currentUrl);
                         console.log("start to crawl in url:  " + currentUrl);
                         if (!parser) return [3 /*break*/, 4];
@@ -79,6 +84,7 @@ var Crawler = /** @class */ (function () {
                         $ = _a.sent();
                         if ($) {
                             products = parser.parse(currentUrl, $, false, undefined);
+                            this._finishedParseList.push(currentUrl);
                             if (products) {
                                 if (products.length != 0) {
                                     Array.prototype.push.apply(newProducts, products);
@@ -88,14 +94,17 @@ var Crawler = /** @class */ (function () {
                         }
                         _a.label = 4;
                     case 4: return [3 /*break*/, 1];
-                    case 5: return [4 /*yield*/, this._storageHandler.insert(newProducts, SqlConsts_1.StoresConsts.SHUFERSAL, false)];
+                    case 5: return [4 /*yield*/, this._storageHandler.insert(newProducts, false)];
                     case 6:
                         _a.sent();
+                        console.log(newProducts);
+                        console.log(newProducts.length);
                         return [2 /*return*/, newProducts];
                 }
             });
         });
     };
+    //TODO: test if works
     Crawler.prototype.update = function (products) {
         return __awaiter(this, void 0, void 0, function () {
             var uniqueUrls, updated, _i, products_1, url_1, _a, uniqueUrls_1, url_2, parser, $;
@@ -131,15 +140,16 @@ var Crawler = /** @class */ (function () {
                     case 3:
                         _a++;
                         return [3 /*break*/, 1];
-                    case 4:
-                        this._storageHandler.insert(updated, SqlConsts_1.StoresConsts.SHUFERSAL, true);
+                    case 4: return [4 /*yield*/, this._storageHandler.insert(updated, true)];
+                    case 5:
+                        _b.sent();
                         return [2 /*return*/];
                 }
             });
         });
     };
     Crawler.prototype.close = function () {
-        this._storageHandler.close();
+        //this._storageHandler.close();
     };
     return Crawler;
 }());

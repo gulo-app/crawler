@@ -19,7 +19,7 @@ export class StorageUtils {
 
     public static capacityUnitHandler(unit: string): CapacityUnitConst {
         switch (unit) {
-            case 'גרם':
+            case 'גרם' || 'לגר' || 'גר':
                 return CapacityUnitConst.GRAM;
                 break;
             case 'ליטר':

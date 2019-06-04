@@ -13,6 +13,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
+var SqlConsts_1 = require("../../../storagehandler/model/SqlConsts");
 var cheerio = require('cheerio');
 var Parser_1 = require("../../Parser");
 var ParserUrls_1 = require("../../ParserUrls");
@@ -25,8 +26,6 @@ var ShufersalParser = /** @class */ (function (_super) {
         _this.baseUrl = ParserUrls_1.ParserUrls.SHUFERSAL_HOME;
         _this.categoryUrl = ParserUrls_1.ParserUrls.SHUFERSAL_CATEGORY;
         return _this;
-        //TODO: map_cat_to_gulo
-        //{'milk': 'A01'}
     }
     ShufersalParser.prototype.extractUrls = function (url, $) {
         if (!url.includes(this.categoryUrl)) {
@@ -75,10 +74,13 @@ var ShufersalParser = /** @class */ (function (_super) {
             var $ = cheerio.load(product);
             var capacityInfo = $('div > div.textContainer > div > div.labelsListContainer > div > span:nth-child(1)')
                 .text().split(' ');
-            var brand = $('div > div.textContainer > div > div.labelsListContainer > div > span:nth-child(2)').text();
+            var brand_name = $('div > div.textContainer > div > div.labelsListContainer > div > span:nth-child(2)').text();
             var category = url.split('/');
+            var barcode = product.attribs['data-product-code'].replace('P_', '');
+            var product_name = product.attribs['data-product-product_name'];
+            var product_price = product.attribs['data-product-price'];
             try {
-                var newProduct = new NewProduct_1.NewProduct(Number(product.attribs['data-product-code'].replace('P_', '')), product.attribs['data-product-name'], Number(product.attribs['data-product-price']), url, Number(capacityInfo[0]), capacityInfo[1], brand, category[category.length - 1]);
+                var newProduct = new NewProduct_1.NewProduct(Number(barcode), product_name, Number(product_price), url, Number(capacityInfo[0]), capacityInfo[1], brand_name, category[category.length - 1], SqlConsts_1.StoresConsts.SHUFERSAL);
                 parsedProducts.push(newProduct);
             }
             catch (e) {
@@ -87,16 +89,17 @@ var ShufersalParser = /** @class */ (function (_super) {
         }
         return parsedProducts;
     };
+    //TODO: check if works - test
     ShufersalParser.prototype.parseUpdate = function (products, productsBarcodeList) {
         if (productsBarcodeList === void 0) { productsBarcodeList = void 0; }
         var updatedProducts = [];
+        var productsIdWithPrefix = productsBarcodeList.map(function (value) {
+            return 'P_' + value;
+        });
         for (var _i = 0, products_2 = products; _i < products_2.length; _i++) {
             var product = products_2[_i];
-            var productsIdWithPrefix = products.map(function (value) {
-                return 'P_' + value;
-            });
-            if (productsIdWithPrefix.includes(product['data-product-code'])) {
-                updatedProducts.push(new Product_1.Product(Number(product.attribs['data-product-code'].replace('P_', '')), Number(product.attribs['data-product-price'])));
+            if (productsIdWithPrefix.includes(product.attribs['data-product-code'])) {
+                updatedProducts.push(new Product_1.Product(Number(product.attribs['data-product-code'].replace('P_', '')), Number(product.attribs['data-product-price']), SqlConsts_1.StoresConsts.SHUFERSAL));
             }
         }
         return updatedProducts;

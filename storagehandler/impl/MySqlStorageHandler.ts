@@ -76,17 +76,15 @@ export class MySqlStorageHandler extends StorageHandler{
 
                 await this.query(
                     `INSERT INTO shopping_cart_prices
-                      (${ShoppingCartField.FIRM_ID} ,${ShoppingCartField.BARCODE}, ${ShoppingCartField.PRICE}, ${ShoppingCartField.LINK}, ${ShoppingCartField.UPDATE_TIME})
+                      (${ShoppingCartField.FIRM_ID} ,${ShoppingCartField.BARCODE}, ${ShoppingCartField.PRICE}, ${ShoppingCartField.LINK})
                        VALUES
                       (${Number(productMap.get(ShoppingCartField.FIRM_ID))}, 
                        ${productMap.get(ShoppingCartField.BARCODE)},
                        ${Number(productMap.get(ShoppingCartField.PRICE))}, 
-                      "${productMap.get(ShoppingCartField.LINK)}",
-                      "${productMap.get(ShoppingCartField.UPDATE_TIME)}")
+                      "${productMap.get(ShoppingCartField.LINK)}"
                        ON DUPLICATE KEY UPDATE 
-                       ${ShoppingCartField.PRICE} = ${productMap.get(ShoppingCartField.PRICE)},
-                       ${ShoppingCartField.UPDATE_TIME} = "${productMap.get(ShoppingCartField.UPDATE_TIME)}";
-                `);
+                       ${ShoppingCartField.PRICE} = ${productMap.get(ShoppingCartField.PRICE)};
+                     `);
             }
             catch (e) {
                 console.log(e);

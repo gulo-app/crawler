@@ -19,10 +19,10 @@ var YenotBitanParser = /** @class */ (function (_super) {
     function YenotBitanParser() {
         return _super.call(this) || this;
     }
-    YenotBitanParser.prototype.extractUrls = function () {
+    YenotBitanParser.prototype.extractUrls = function (url, $) {
         return undefined;
     };
-    YenotBitanParser.prototype.parse = function (url, node, updateMode, productsId) {
+    YenotBitanParser.prototype.parse = function (url, $, updateMode, productsId) {
         return undefined;
     };
     return YenotBitanParser;

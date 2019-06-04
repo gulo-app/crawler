@@ -6,14 +6,17 @@ import {Downloader} from "../downloader/Downloader";
 import {NewProduct} from "../product/NewProduct";
 import {url} from "inspector";
 import {StoresConsts} from "../storagehandler/model/SqlConsts";
-import {RamiLevyParser} from "../parser/impl/RamiLevyParser";
+import {RamiLevyParser} from "../parser/impl/ramilevy/RamiLevyParser";
+import * as path from "path";
+import {JsonStorageHandler} from "../storagehandler/impl/JsonStorageHandler";
 
 const cheerio = require('cheerio');
 
 export class Crawler {
 
     private _parsersList: Array<Parser>;
-    private _storageHandler: MySqlStorageHandler;
+    private _storageHandler: JsonStorageHandler;
+    private _finishedParseList: Array<string>;
 
     private readonly parsersList = {
         'shufersal.co.il/online/he/A': new ShufersalParser(),
@@ -23,7 +26,8 @@ export class Crawler {
     }
 
     constructor(){
-        this._storageHandler = new MySqlStorageHandler(false);
+        this._storageHandler = new JsonStorageHandler(false);
+        this._finishedParseList = new Array<string>();
     }
 
      private findParser(url: string): Parser {
@@ -41,6 +45,7 @@ export class Crawler {
         let urlsToCrawl: string[] = urls;
         while (urlsToCrawl.length){
             let currentUrl = urlsToCrawl.pop();
+            if(this._finishedParseList.indexOf(currentUrl) != -1) continue;
             let parser = this.findParser(currentUrl);
             console.log("start to crawl in url:  " + currentUrl);
             if(parser){
@@ -48,6 +53,7 @@ export class Crawler {
                 const $ = await cheerio.load(html);
                 if($){
                     let products = parser.parse(currentUrl, $, false, undefined);
+                    this._finishedParseList.push(currentUrl);
                     if(products){
                         if(products.length != 0) {
                             Array.prototype.push.apply(newProducts, products);
@@ -58,7 +64,9 @@ export class Crawler {
             }
         }
 
-        //await this._storageHandler.insert(newProducts, StoresConsts.SHUFERSAL, false);
+        await this._storageHandler.insert(newProducts, false);
+        console.log(newProducts);
+        console.log(newProducts.length);
         return newProducts;
     }
 
@@ -86,12 +94,12 @@ export class Crawler {
             }
         }
 
-        this._storageHandler.insert(updated, true);
+        await this._storageHandler.insert(updated, true);
         return;
     }
 
     public close(): void {
-        this._storageHandler.close();
+        //this._storageHandler.close();
     }
 
 }

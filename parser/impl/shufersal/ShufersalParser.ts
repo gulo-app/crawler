@@ -61,21 +61,24 @@ export class ShufersalParser extends Parser {
             const $ = cheerio.load(product);
             let capacityInfo: string[] = $('div > div.textContainer > div > div.labelsListContainer > div > span:nth-child(1)')
                 .text().split(' ');
-            let  brand = $('div > div.textContainer > div > div.labelsListContainer > div > span:nth-child(2)').text();
+            let brand_name = $('div > div.textContainer > div > div.labelsListContainer > div > span:nth-child(2)').text();
             let category: string[] = url.split('/');
-
+            let barcode = product.attribs['data-product-code'].replace('P_', '');
+            let product_name = product.attribs['data-product-product_name'];
+            let product_price = product.attribs['data-product-price']
             try {
                 let newProduct = new NewProduct(
-                    Number(product.attribs['data-product-code'].replace('P_', '')),
-                    product.attribs['data-product-name'],
-                    Number(product.attribs['data-product-price']),
+                    Number(barcode),
+                    product_name,
+                    Number(product_price),
                     url,
                     Number(capacityInfo[0]),
                     capacityInfo[1],
-                    brand,
+                    brand_name,
                     category[category.length-1],
                     StoresConsts.SHUFERSAL
                 );
+
                 parsedProducts.push(newProduct);
             } catch (e) {
                 continue; //if a KeyError thrown
@@ -88,11 +91,12 @@ export class ShufersalParser extends Parser {
     //TODO: check if works - test
     parseUpdate(products: CheerioElement[], productsBarcodeList: [] = void 0) {
         let updatedProducts = [];
+        let productsIdWithPrefix = productsBarcodeList.map(function (value) {
+            return 'P_'+ value;
+        });
+
         for(let product of products){
-            let productsIdWithPrefix = products.map(function (value) {
-               return 'P_'+ value;
-            })
-            if(productsIdWithPrefix.includes(product['data-product-code'])) {
+            if(productsIdWithPrefix.includes(product.attribs['data-product-code'])) {
                 updatedProducts.push(
                     new Product(
                         Number(product.attribs['data-product-code'].replace('P_', '')),
