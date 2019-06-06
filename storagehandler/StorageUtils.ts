@@ -7,7 +7,7 @@ import {ShufersalFieldsMap} from "../parser/impl/shufersal/ShufersalFieldsMap";
  */
 export class StorageUtils {
 
-    public static categoriesHandler(category: string): CategoriesConst {
+    public static shufersalCategoriesHandler(category: string): CategoriesConst {
         for (let key in ShufersalFieldsMap) {
             if (category.match(key)) {
                 return ShufersalFieldsMap[key];
@@ -19,19 +19,19 @@ export class StorageUtils {
 
     public static capacityUnitHandler(unit: string): CapacityUnitConst {
         switch (unit) {
-            case 'גרם' || 'לגר' || 'גר':
+            case 'גרם' || 'לגר' || 'גר' || '100 גרם':
                 return CapacityUnitConst.GRAM;
                 break;
             case 'ליטר':
                 return CapacityUnitConst.LITER;
                 break;
-            case 'ק"ג' || 'לקג':
+            case 'ק"ג' || 'לקג' || 'קילו':
                 return CapacityUnitConst.KILOGRAM;
                 break;
-            case '*' || 'יחידות' || 'יחידה' || 'יחי':
+            case '*' || 'יחידות' || 'יחידה' || 'יחי' || 'יחידו':
                 return CapacityUnitConst.UNIT;
                 break;
-            case 'מ"ל':
+            case 'מ"ל' || 'מ\'ל':
                 return CapacityUnitConst.ML;
                 break;
             default:

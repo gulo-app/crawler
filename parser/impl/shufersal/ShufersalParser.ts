@@ -5,6 +5,7 @@ import { Parser } from "../../Parser";
 import {ParserUrls} from "../../ParserUrls";
 import {NewProduct} from "../../../product/NewProduct";
 import {Product} from "../../../product/Product";
+import {StorageUtils} from "../../../storagehandler/StorageUtils";
 
 export class ShufersalParser extends Parser {
 
@@ -64,7 +65,7 @@ export class ShufersalParser extends Parser {
             let brand_name = $('div > div.textContainer > div > div.labelsListContainer > div > span:nth-child(2)').text();
             let category: string[] = url.split('/');
             let barcode = product.attribs['data-product-code'].replace('P_', '');
-            let product_name = product.attribs['data-product-product_name'];
+            let product_name = product.attribs['data-product-name'];
             let product_price = product.attribs['data-product-price']
             try {
                 let newProduct = new NewProduct(
@@ -78,7 +79,7 @@ export class ShufersalParser extends Parser {
                     category[category.length-1],
                     StoresConsts.SHUFERSAL
                 );
-
+                console.log(newProduct);
                 parsedProducts.push(newProduct);
             } catch (e) {
                 continue; //if a KeyError thrown

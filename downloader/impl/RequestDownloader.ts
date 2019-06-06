@@ -1,7 +1,7 @@
 import {Downloader} from "../Downloader";
 import request = require('request');
 
-class RequestDownloader extends Downloader{
+export class RequestDownloader extends Downloader{
 
      async downloadHtml(url: string): Promise<any> {
          return new Promise((resolve, reject) => {

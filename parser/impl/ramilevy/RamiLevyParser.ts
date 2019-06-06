@@ -103,12 +103,12 @@ export class RamiLevyParser extends Parser {
         for (let product of products) {
             const $ = cheerio.load(product);
 
-            let imgObj: string[] = $('div.image > img').attr('src').split("/");
+            let imgObj: string[] = $('div.image > a > img').attr('src').split('/');
             let barcode = imgObj[imgObj.length - 1].replace(".jpg", " ");
             let prodName = $('div.prodDescDiv > h3.prodName').text();
             let prodBrand = $('div.prodBrand').text().replace("מותג:", " ");
-            let prodPrice = $('div.prodPrice').text().replace('\u20aa', " "); // remove the shekel sign
-            let category = $('div.level1 > div > ul > li.current > a').attr("href");
+            let prodPrice = $('div.prodPrice').text().replace('\u20aa', " ").split("\n")[0].trim();; // remove the shekel sign
+            let category = url.split('/');
 
             let nameToParse: string[] = prodName.split(" ");
             let capacityUnit;
@@ -135,7 +135,7 @@ export class RamiLevyParser extends Parser {
                     capacity,
                     capacityUnit,
                     prodBrand,
-                    category,
+                    category[category.length-1],
                     StoresConsts.RAMI_LEVI
                 );
                 parsedProducts.push(newProduct);

@@ -77,10 +77,11 @@ var ShufersalParser = /** @class */ (function (_super) {
             var brand_name = $('div > div.textContainer > div > div.labelsListContainer > div > span:nth-child(2)').text();
             var category = url.split('/');
             var barcode = product.attribs['data-product-code'].replace('P_', '');
-            var product_name = product.attribs['data-product-product_name'];
+            var product_name = product.attribs['data-product-name'];
             var product_price = product.attribs['data-product-price'];
             try {
                 var newProduct = new NewProduct_1.NewProduct(Number(barcode), product_name, Number(product_price), url, Number(capacityInfo[0]), capacityInfo[1], brand_name, category[category.length - 1], SqlConsts_1.StoresConsts.SHUFERSAL);
+                console.log(newProduct);
                 parsedProducts.push(newProduct);
             }
             catch (e) {

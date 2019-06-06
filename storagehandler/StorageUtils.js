@@ -9,7 +9,7 @@ var ShufersalFieldsMap_1 = require("../parser/impl/shufersal/ShufersalFieldsMap"
 var StorageUtils = /** @class */ (function () {
     function StorageUtils() {
     }
-    StorageUtils.categoriesHandler = function (category) {
+    StorageUtils.shufersalCategoriesHandler = function (category) {
         for (var key in ShufersalFieldsMap_1.ShufersalFieldsMap) {
             if (category.match(key)) {
                 return ShufersalFieldsMap_1.ShufersalFieldsMap[key];
@@ -19,19 +19,19 @@ var StorageUtils = /** @class */ (function () {
     };
     StorageUtils.capacityUnitHandler = function (unit) {
         switch (unit) {
-            case 'גרם' || 'לגר' || 'גר':
+            case 'גרם' || 'לגר' || 'גר' || '100 גרם':
                 return SqlConsts_1.CapacityUnitConst.GRAM;
                 break;
             case 'ליטר':
                 return SqlConsts_1.CapacityUnitConst.LITER;
                 break;
-            case 'ק"ג' || 'לקג':
+            case 'ק"ג' || 'לקג' || 'קילו':
                 return SqlConsts_1.CapacityUnitConst.KILOGRAM;
                 break;
-            case '*' || 'יחידות' || 'יחידה' || 'יחי':
+            case '*' || 'יחידות' || 'יחידה' || 'יחי' || 'יחידו':
                 return SqlConsts_1.CapacityUnitConst.UNIT;
                 break;
-            case 'מ"ל':
+            case 'מ"ל' || 'מ\'ל':
                 return SqlConsts_1.CapacityUnitConst.ML;
                 break;
             default:

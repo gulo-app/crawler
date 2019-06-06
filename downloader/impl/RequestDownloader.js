@@ -70,4 +70,5 @@ var RequestDownloader = /** @class */ (function (_super) {
     };
     return RequestDownloader;
 }(Downloader_1.Downloader));
+exports.RequestDownloader = RequestDownloader;
 //# sourceMappingURL=RequestDownloader.js.map

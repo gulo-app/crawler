@@ -107,12 +107,13 @@ var RamiLevyParser = /** @class */ (function (_super) {
         for (var _i = 0, products_1 = products; _i < products_1.length; _i++) {
             var product = products_1[_i];
             var $ = cheerio.load(product);
-            var imgObj = $('div.image > img').attr('src').split("/");
+            var imgObj = $('div.image > a > img').attr('src').split('/');
             var barcode = imgObj[imgObj.length - 1].replace(".jpg", " ");
             var prodName = $('div.prodDescDiv > h3.prodName').text();
             var prodBrand = $('div.prodBrand').text().replace("מותג:", " ");
-            var prodPrice = $('div.prodPrice').text().replace('\u20aa', " "); // remove the shekel sign
-            var category = $('div.level1 > div > ul > li.current > a').attr("href");
+            var prodPrice = $('div.prodPrice').text().replace('\u20aa', " ").split("\n")[0].trim();
+            ; // remove the shekel sign
+            var category = url.split('/');
             var nameToParse = prodName.split(" ");
             var capacityUnit = void 0;
             var capacity = void 0;
@@ -128,7 +129,7 @@ var RamiLevyParser = /** @class */ (function (_super) {
                 capacityUnit = checkString.replace(new RegExp('/[0-9]/g'), '');
             }
             try {
-                var newProduct = new NewProduct_1.NewProduct(Number(barcode), prodName, prodPrice, url, capacity, capacityUnit, prodBrand, category, SqlConsts_1.StoresConsts.RAMI_LEVI);
+                var newProduct = new NewProduct_1.NewProduct(Number(barcode), prodName, prodPrice, url, capacity, capacityUnit, prodBrand, category[category.length - 1], SqlConsts_1.StoresConsts.RAMI_LEVI);
                 parsedProducts.push(newProduct);
             }
             catch (e) {

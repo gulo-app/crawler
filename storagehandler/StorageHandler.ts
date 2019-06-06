@@ -31,7 +31,7 @@ export abstract class StorageHandler {
         prodMap.set(SqlFields.CAPACITY, product.capacity.toString());
         prodMap.set(ShoppingCartField.LINK, product.url);
         prodMap.set(SqlFields.CAPACITY_UNIT, StorageUtils.capacityUnitHandler(product.capacity_unit).toString());
-        prodMap.set(SqlFields.CATEGORY, StorageUtils.categoriesHandler(product.category).toString());
+        prodMap.set(SqlFields.CATEGORY, StorageUtils.shufersalCategoriesHandler(product.category).toString());
 
         return prodMap;
     }

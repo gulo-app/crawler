@@ -38,7 +38,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var ShufersalParser_1 = require("../parser/impl/shufersal/ShufersalParser");
 var RamiLevyParser_1 = require("../parser/impl/ramilevy/RamiLevyParser");
 var JsonStorageHandler_1 = require("../storagehandler/impl/JsonStorageHandler");
-var SeleniumDownloader_1 = require("../downloader/impl/SeleniumDownloader");
+var RequestDownloader_1 = require("../downloader/impl/RequestDownloader");
 var cheerio = require('cheerio');
 var Crawler = /** @class */ (function () {
     function Crawler() {
@@ -76,7 +76,7 @@ var Crawler = /** @class */ (function () {
                         parser = this.findParser(currentUrl);
                         console.log("start to crawl in url:  " + currentUrl);
                         if (!parser) return [3 /*break*/, 4];
-                        return [4 /*yield*/, new SeleniumDownloader_1.SeleniumDownloader().downloadHtml(currentUrl)];
+                        return [4 /*yield*/, new RequestDownloader_1.RequestDownloader().downloadHtml(currentUrl)];
                     case 2:
                         html = _a.sent();
                         return [4 /*yield*/, cheerio.load(html)];
@@ -94,17 +94,18 @@ var Crawler = /** @class */ (function () {
                         }
                         _a.label = 4;
                     case 4: return [3 /*break*/, 1];
-                    case 5: return [4 /*yield*/, this._storageHandler.insert(newProducts, false)];
+                    case 5: 
+                    //TODO: add validation on products
+                    return [4 /*yield*/, this._storageHandler.insert(newProducts, false)];
                     case 6:
+                        //TODO: add validation on products
                         _a.sent();
-                        //console.log(newProducts);
-                        console.log(newProducts.length);
+                        console.log("Finished parse " + newProducts.length + " new products");
                         return [2 /*return*/, newProducts];
                 }
             });
         });
     };
-    //TODO: test if works
     Crawler.prototype.update = function (products) {
         return __awaiter(this, void 0, void 0, function () {
             var uniqueUrls, updated, _i, products_1, product, _a, _b, _c, url_1, parser, html, $;
@@ -134,7 +135,7 @@ var Crawler = /** @class */ (function () {
                         url_1 = _a[_c];
                         parser = this.findParser(url_1);
                         if (!parser) return [3 /*break*/, 3];
-                        return [4 /*yield*/, new SeleniumDownloader_1.SeleniumDownloader().downloadHtml(url_1)];
+                        return [4 /*yield*/, new RequestDownloader_1.RequestDownloader().downloadHtml(url_1)];
                     case 2:
                         html = _d.sent();
                         $ = cheerio.load(html);
@@ -145,9 +146,13 @@ var Crawler = /** @class */ (function () {
                     case 3:
                         _c++;
                         return [3 /*break*/, 1];
-                    case 4: return [4 /*yield*/, this._storageHandler.insert(updated, true)];
+                    case 4: 
+                    //TODO: add validation on products
+                    return [4 /*yield*/, this._storageHandler.insert(updated, true)];
                     case 5:
+                        //TODO: add validation on products
                         _d.sent();
+                        console.log("Finished parse and update " + updated.length + " prices of products");
                         return [2 /*return*/];
                 }
             });

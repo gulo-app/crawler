@@ -49,10 +49,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var Downloader_1 = require("../Downloader");
-//const {Builder} = require('selenium-webdriver');
-//import webdriver from "selenium-webdriver";
 var webdriver = require("selenium-webdriver");
-//import webdriver = require('selenium-webdriver');
 var SeleniumDownloader = /** @class */ (function (_super) {
     __extends(SeleniumDownloader, _super);
     function SeleniumDownloader() {
@@ -63,10 +60,13 @@ var SeleniumDownloader = /** @class */ (function (_super) {
             var driver, html;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0:
-                        driver = new webdriver.Builder().forBrowser('chrome').build();
-                        return [4 /*yield*/, driver.get(url)];
+                    case 0: return [4 /*yield*/, new webdriver.Builder()
+                            .forBrowser('chrome')
+                            .build()];
                     case 1:
+                        driver = _a.sent();
+                        return [4 /*yield*/, driver.get(url)];
+                    case 2:
                         _a.sent();
                         html = driver.executeScript("return document.getElementsByTagName('html')[0].innerHTML");
                         return [2 /*return*/, html];

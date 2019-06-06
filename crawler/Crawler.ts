@@ -10,12 +10,13 @@ import {RamiLevyParser} from "../parser/impl/ramilevy/RamiLevyParser";
 import * as path from "path";
 import {JsonStorageHandler} from "../storagehandler/impl/JsonStorageHandler";
 import {SeleniumDownloader} from "../downloader/impl/SeleniumDownloader";
+import {YenotBitanParser} from "../parser/impl/YenotBitanParser";
+import {RequestDownloader} from "../downloader/impl/RequestDownloader";
 
 const cheerio = require('cheerio');
 
 export class Crawler {
 
-    private _parsersList: Array<Parser>;
     private _storageHandler: JsonStorageHandler;
     private _finishedParseList: Array<string>;
 
@@ -24,7 +25,7 @@ export class Crawler {
         'shufersal.co.il/online/he/c': new ShufersalParser(),
         'https://www.rami-levy.co.il/category/start_buy': new RamiLevyParser(),
         'https://www.rami-levy.co.il/default.asp?catid=': new RamiLevyParser()
-    }
+    };
 
     constructor(){
         this._storageHandler = new JsonStorageHandler(false);
@@ -37,7 +38,6 @@ export class Crawler {
                 return this.parsersList[key];
             }
         }
-
         return null;
     }
 
@@ -50,8 +50,8 @@ export class Crawler {
             let parser = this.findParser(currentUrl);
             console.log("start to crawl in url:  " + currentUrl);
             if(parser){
-                //let html = await Downloader.downloadHtml(currentUrl);
-                let html = await new SeleniumDownloader().downloadHtml(currentUrl);
+                let html = await new RequestDownloader().downloadHtml(currentUrl);
+                //let html = await new SeleniumDownloader().downloadHtml(currentUrl);
                 const $ = await cheerio.load(html);
                 if($){
                     let products = parser.parse(currentUrl, $, false, undefined);
@@ -65,14 +65,13 @@ export class Crawler {
                 }
             }
         }
-
+        //TODO: add validation on products
         await this._storageHandler.insert(newProducts, false);
-        //console.log(newProducts);
-        console.log(newProducts.length);
+        console.log("Finished parse " + newProducts.length + " new products");
         return newProducts;
     }
 
-    //TODO: test if works
+
     public async update(products) {
         let uniqueUrls = {};
         let updated = [];
@@ -90,15 +89,17 @@ export class Crawler {
         for(let url in uniqueUrls){
             let parser = this.findParser(url);
             if(parser){
-                const html = await new SeleniumDownloader().downloadHtml(url);
+                let html = await new RequestDownloader().downloadHtml(url);
+                //const html = await new SeleniumDownloader().downloadHtml(url);
                 const $ = cheerio.load(html);
                 if($){
                     Array.prototype.push.apply(updated, parser.parse(url, $, true, uniqueUrls[url]));
                 }
             }
         }
-
+        //TODO: add validation on products
         await this._storageHandler.insert(updated, true);
+        console.log("Finished parse and update " + updated.length + " prices of products");
         return;
     }
 

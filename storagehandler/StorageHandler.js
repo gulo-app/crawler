@@ -21,7 +21,7 @@ var StorageHandler = /** @class */ (function () {
         prodMap.set(SqlFields_1.SqlFields.CAPACITY, product.capacity.toString());
         prodMap.set(SqlFields_1.ShoppingCartField.LINK, product.url);
         prodMap.set(SqlFields_1.SqlFields.CAPACITY_UNIT, StorageUtils_1.StorageUtils.capacityUnitHandler(product.capacity_unit).toString());
-        prodMap.set(SqlFields_1.SqlFields.CATEGORY, StorageUtils_1.StorageUtils.categoriesHandler(product.category).toString());
+        prodMap.set(SqlFields_1.SqlFields.CATEGORY, StorageUtils_1.StorageUtils.shufersalCategoriesHandler(product.category).toString());
         return prodMap;
     };
     StorageHandler.prototype.prepareBasicProduct = function (product) {

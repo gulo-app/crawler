@@ -51,6 +51,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var StorageHandler_1 = require("../StorageHandler");
 var path = require("path");
 var fs = require("fs");
+var StorageUtils_1 = require("../StorageUtils");
+var SqlConsts_1 = require("../model/SqlConsts");
 var PRODUCTS_OUTPUT = { filename: "products.json", get path() { return path.join(__dirname, '../../output', this.filename); } };
 var PRICES_OUTPUT = { filename: "prices.json", get path() { return path.join(__dirname, '../../output', this.filename); } };
 var TEST_OUTPUT = { filename: "pricestest.json", get path() { return path.join(__dirname, '../../output', this.filename); } };
@@ -64,7 +66,7 @@ var JsonStorageHandler = /** @class */ (function (_super) {
     }
     JsonStorageHandler.prototype.insert = function (products, updateMode) {
         return __awaiter(this, void 0, void 0, function () {
-            var newProductsToInsert, updateProducts, _i, products_1, currProd, barcode, shopping_cart_firm_id, price, link, updatedProd, _a, products_2, currProd, barcode, product_name, brand_name, capacity, capacity_units_name, productNew;
+            var newProductsToInsert, updateProducts, _i, products_1, currProd, barcode, shopping_cart_firm_id, price, updatedProd, _a, products_2, currProd, barcode, product_name, brand_name, capacity, capacity_units_name, category_id, productNew;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
@@ -76,8 +78,7 @@ var JsonStorageHandler = /** @class */ (function (_super) {
                             barcode = currProd.barcode;
                             shopping_cart_firm_id = currProd.firmId;
                             price = currProd.price;
-                            link = currProd.url;
-                            updatedProd = { barcode: barcode, shopping_cart_firm_id: shopping_cart_firm_id, price: price, link: link };
+                            updatedProd = { barcode: barcode, price: price, shopping_cart_firm_id: shopping_cart_firm_id };
                             updateProducts.push(updatedProd);
                         }
                         return [4 /*yield*/, this.appendProductsToFile(updateProducts, PRICES_OUTPUT.path)];
@@ -91,8 +92,13 @@ var JsonStorageHandler = /** @class */ (function (_super) {
                             product_name = currProd.product_name;
                             brand_name = currProd.brand;
                             capacity = currProd.capacity;
-                            capacity_units_name = currProd.capacity_unit;
-                            productNew = { barcode: barcode, product_name: product_name, brand_name: brand_name, capacity: capacity, capacity_units_name: capacity_units_name };
+                            capacity_units_name = StorageUtils_1.StorageUtils.capacityUnitHandler(currProd.capacity_unit);
+                            category_id = void 0;
+                            if (currProd.firmId == SqlConsts_1.StoresConsts.SHUFERSAL)
+                                category_id = StorageUtils_1.StorageUtils.shufersalCategoriesHandler(currProd.category);
+                            else
+                                category_id = 0;
+                            productNew = { barcode: barcode, product_name: product_name, brand_name: brand_name, capacity: capacity, capacity_units_name: capacity_units_name, category_id: category_id };
                             newProductsToInsert.push(productNew);
                         }
                         return [4 /*yield*/, this.appendProductsToFile(newProductsToInsert, PRODUCTS_OUTPUT.path)];
