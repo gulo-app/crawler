@@ -9,19 +9,19 @@ const YENOT_BITAN_XML = {filename: "yenotbitan-prices.xml", get path(){return pa
 
 
 let run = (urls: string[]): void => {
-    //let xmlCrawler = new XMLCrawler();
-   // xmlCrawler.crawl(urls);
-    //xmlCrawler.update(urls);
-    let crawler = new Crawler();
-    let products = crawler.crawl(urls);
-    let productsToUpdate = JsonStorageHandler.readProductsFromFile(TEST_OUTPUT.path);
-    let prodList = productsToUpdate.then(function(value) {
-        crawler.update(value);
-    });
+    let xmlCrawler = new XMLCrawler();
+    //xmlCrawler.crawl(urls);
+    xmlCrawler.update(urls);
+    //let crawler = new Crawler();
+    //let products = crawler.crawl(urls);
+    //let productsToUpdate = JsonStorageHandler.readProductsFromFile(TEST_OUTPUT.path);
+    //let prodList = productsToUpdate.then(function(value) {
+     //   crawler.update(value);
+    //});
 
 };
 
-run(['https://www.shufersal.co.il/online/he/A']);
+run([YENOT_BITAN_XML.path]);
 
 
 //'https://www.shufersal.co.il/online/he/A', 'https://www.rami-levy.co.il/category/start_buy'

@@ -1,37 +1,40 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var SqlFields_1 = require("./model/SqlFields");
-var StorageUtils_1 = require("./StorageUtils");
-var Product_1 = require("../product/Product");
 var StorageHandler = /** @class */ (function () {
     function StorageHandler(isProd) {
         this.isProd = isProd;
     }
-    StorageHandler.prototype.prepareNewProductMap = function (product) {
-        var prodMap = this.prepareBasicProduct(product);
-        if (typeof product === Product_1.Product.name) {
+    /*public prepareNewProductMap(product: NewProduct): Map<string,string> {
+        let prodMap = this.prepareBasicProduct(product);
+
+        if (typeof product === Product.name) {
             return prodMap;
         }
-        prodMap.set(SqlFields_1.SqlFields.PRODUCT_NAME, product.product_name);
-        prodMap.set(SqlFields_1.SqlFields.BRAND_NAME, product.brand);
-        if (product.capacity === NaN) {
+
+        prodMap.set(SqlFields.PRODUCT_NAME, product.product_name);
+        prodMap.set(SqlFields.BRAND_NAME, product.brand);
+        if(product.capacity === NaN) {
             // @ts-ignore
             product.capacity(0);
         }
-        prodMap.set(SqlFields_1.SqlFields.CAPACITY, product.capacity.toString());
-        prodMap.set(SqlFields_1.ShoppingCartField.LINK, product.url);
-        prodMap.set(SqlFields_1.SqlFields.CAPACITY_UNIT, StorageUtils_1.StorageUtils.capacityUnitHandler(product.capacity_unit).toString());
-        prodMap.set(SqlFields_1.SqlFields.CATEGORY, StorageUtils_1.StorageUtils.shufersalCategoriesHandler(product.category).toString());
+        prodMap.set(SqlFields.CAPACITY, product.capacity.toString());
+        prodMap.set(ShoppingCartField.LINK, product.url);
+        prodMap.set(SqlFields.CAPACITY_UNIT, StorageUtils.capacityUnitHandler(product.capacity_unit).toString());
+        prodMap.set(SqlFields.CATEGORY, StorageUtils.shufersalCategoriesHandler(product.category).toString());
+
         return prodMap;
-    };
+    }*/
     StorageHandler.prototype.prepareBasicProduct = function (product) {
-        var prodMap = new Map();
-        if (typeof product.barcode === "number") {
-            prodMap.set(SqlFields_1.SqlFields.BARCODE, product.barcode);
+        var barcode;
+        if (/^\d+$/.test(product.barcode.toString())) {
+            barcode = product.barcode;
         }
-        prodMap.set(SqlFields_1.ShoppingCartField.PRICE, product.price);
-        prodMap.set(SqlFields_1.ShoppingCartField.FIRM_ID, product.firmId.toString());
-        return prodMap;
+        else
+            return undefined;
+        var shopping_cart_firm_id = product.firmId;
+        var price = product.price;
+        var updatedProd = { barcode: barcode, price: price, shopping_cart_firm_id: shopping_cart_firm_id };
+        return updatedProd;
     };
     return StorageHandler;
 }());

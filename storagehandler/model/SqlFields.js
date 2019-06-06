@@ -16,6 +16,7 @@ var ShoppingCartField;
     ShoppingCartField["BARCODE"] = "barcode";
     ShoppingCartField["PRICE"] = "price";
     ShoppingCartField["LINK"] = "link";
+    ShoppingCartField["UPDATED_AT"] = "updatedAt";
 })(ShoppingCartField = exports.ShoppingCartField || (exports.ShoppingCartField = {}));
 var ProductCategoryField;
 (function (ProductCategoryField) {

@@ -15,7 +15,7 @@ export abstract class StorageHandler {
 
     abstract async insert(products: Array<Product>, updateMode: boolean): Promise<void>;
 
-    public prepareNewProductMap(product: NewProduct): Map<string,string> {
+    /*public prepareNewProductMap(product: NewProduct): Map<string,string> {
         let prodMap = this.prepareBasicProduct(product);
 
         if (typeof product === Product.name) {
@@ -34,18 +34,19 @@ export abstract class StorageHandler {
         prodMap.set(SqlFields.CATEGORY, StorageUtils.shufersalCategoriesHandler(product.category).toString());
 
         return prodMap;
-    }
+    }*/
 
-    public prepareBasicProduct(product: Product): Map<string,string>{
-        let prodMap = new Map();
-
-        if (typeof product.barcode === "number") {
-            prodMap.set(SqlFields.BARCODE, product.barcode);
+    public prepareBasicProduct(product: Product): {}{
+        let barcode: Number;
+        if (/^\d+$/.test(product.barcode.toString())) {
+            barcode = product.barcode;
         }
+        else return undefined;
+        let shopping_cart_firm_id: Number = product.firmId;
+        let price: Number = product.price;
 
-        prodMap.set(ShoppingCartField.PRICE, product.price);
-        prodMap.set(ShoppingCartField.FIRM_ID, product.firmId.toString());
-        return prodMap;
+        let updatedProd = {barcode, price, shopping_cart_firm_id};
+        return updatedProd;
     }
 
 }

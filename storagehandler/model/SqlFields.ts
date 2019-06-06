@@ -12,7 +12,8 @@ export enum ShoppingCartField {
     FIRM_ID = "shopping_cart_firm_id",
     BARCODE = "barcode",
     PRICE = "price",
-    LINK = "link"
+    LINK = "link",
+    UPDATED_AT = "updatedAt"
 }
 
 export enum ProductCategoryField {

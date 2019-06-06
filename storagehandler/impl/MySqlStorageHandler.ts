@@ -3,8 +3,13 @@ import mysql = require('mysql');
 import {Pool} from "mysql";
 import {NewProduct} from "../../product/NewProduct";
 import {ProductCategoryField, ShoppingCartField, SqlFields} from "../model/SqlFields";
+import {Product} from "../../product/Product";
 //const IS_PROD  =  process.env.IS_PROD;
 
+/**
+ * Storage handler for MySql Database.
+ * Implement update mode for updating products prices
+ */
 export class MySqlStorageHandler extends StorageHandler{
 
     private _conn: Pool;
@@ -31,32 +36,42 @@ export class MySqlStorageHandler extends StorageHandler{
         });
     }
 
-    async insert(products: Array<NewProduct>, updateMode: boolean): Promise<void> {
-        if(products.length == 0) {
+    async insert(products: Array<Product>, updateMode: boolean): Promise<void> {
+        if (products.length == 0) {
             console.log("nothing to insert, products list is empty")
             return;
         }
 
+        let updatedProducts = [];
         for (let product of products) {
-            let productMap: Map<string, string> = this.prepareNewProductMap(product);
+            let updated = this.prepareBasicProduct(product);
+            updatedProducts.push(updated);
+        }
+        if (updatedProducts) {
+            for (let currProd of updatedProducts) {
+                if(!currProd["barcode"] || !currProd["price"] || !currProd["shopping_cart_firm_id"])
+                    continue;
 
-            try {
+                try {
+                    await this.query(
+                        `INSERT INTO shopping_cart_prices (barcode ,price, shopping_cart_firm_id) VALUES
+                      (${currProd["barcode"]},${currProd["price"]},${currProd["shopping_cart_firm_id"]})
+                      ON DUPLICATE KEY UPDATE price=${currProd["price"]}, updatedAt=NOW()`);
+                } catch (e) {
+                    console.log("failed to insert product: " + currProd + " due to: " + e);
+                }
+            }
+        }
+
+        console.log(`update ${updatedProducts.length} products prices successfully.`);
+        return;
+    }
+
+
+           /* try {
                 if (!updateMode) {
                     //TODO: fix brand insertion
                     let newBrand;
-                    let results: [] = await this.query(`SELECT brand_id FROM brands WHERE brand_name = "שופרסל";`);
-                       /*     function (error, rows) {
-                        if(error) throw error;
-                        else{
-                            setResults(rows);
-                        }
-                    });
-
-                    if(results.length > 0){
-                        newBrand = results.pop();
-                        console.log(newBrand);
-                    }*/
-
                     await this.query(
                         `INSERT INTO products
                       (barcode, product_name, brand_id, capacity, capacity_unit_id, verifiedCounter)
@@ -73,28 +88,12 @@ export class MySqlStorageHandler extends StorageHandler{
                         (${productMap.get(SqlFields.BARCODE)}, ${productMap.get(SqlFields.CATEGORY)})
                     `);
                 }
-
-                await this.query(
-                    `INSERT INTO shopping_cart_prices
-                      (${ShoppingCartField.FIRM_ID} ,${ShoppingCartField.BARCODE}, ${ShoppingCartField.PRICE}, ${ShoppingCartField.LINK})
-                       VALUES
-                      (${Number(productMap.get(ShoppingCartField.FIRM_ID))}, 
-                       ${productMap.get(ShoppingCartField.BARCODE)},
-                       ${Number(productMap.get(ShoppingCartField.PRICE))}, 
-                      "${productMap.get(ShoppingCartField.LINK)}"
-                       ON DUPLICATE KEY UPDATE 
-                       ${ShoppingCartField.PRICE} = ${productMap.get(ShoppingCartField.PRICE)};
-                     `);
             }
             catch (e) {
                 console.log(e);
                 continue;
-            }
-        }
+            }*/
 
-        console.log(`update ${products.length} products prices successfully.`);
-        return;
-    }
 
     private async query(query): Promise<[]> {
         return new Promise((resolve,reject) => {
