@@ -103,7 +103,7 @@ var MySqlStorageHandler = /** @class */ (function (_super) {
                         _b.label = 2;
                     case 2:
                         _b.trys.push([2, 4, , 5]);
-                        return [4 /*yield*/, this.query("INSERT INTO shopping_cart_prices (barcode ,price, shopping_cart_firm_id) VALUES\n                      (" + currProd["barcode"] + "," + currProd["price"] + "," + currProd["shopping_cart_firm_id"] + ")\n                      ON DUPLICATE KEY UPDATE price=" + currProd["price"] + ", updatedAt=NOW()")];
+                        return [4 /*yield*/, this.query("INSERT INTO shopping_cart_prices (barcode ,price, shopping_cart_firm_id, updatedAt) VALUES\n                      (" + currProd["barcode"] + "," + currProd["price"] + "," + currProd["shopping_cart_firm_id"] + ", NOW())\n                      ON DUPLICATE KEY UPDATE price=" + currProd["price"] + ", updatedAt=NOW()")];
                     case 3:
                         _b.sent();
                         return [3 /*break*/, 5];

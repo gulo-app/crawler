@@ -36,9 +36,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var SqlConsts_1 = require("../storagehandler/model/SqlConsts");
+var JsonStorageHandler_1 = require("../storagehandler/impl/JsonStorageHandler");
 var XMLParser_1 = require("./XMLParser");
 var XMLDownloader_1 = require("../downloader/impl/XMLDownloader");
-var MySqlStorageHandler_1 = require("../storagehandler/impl/MySqlStorageHandler");
 var XMLCrawler = /** @class */ (function () {
     function XMLCrawler() {
         this.parsersList = {
@@ -46,7 +46,7 @@ var XMLCrawler = /** @class */ (function () {
             'ramilevi-prices': new XMLParser_1.XMLParser(SqlConsts_1.StoresConsts.RAMI_LEVI),
             'yenotbitan-prices': new XMLParser_1.XMLParser(SqlConsts_1.StoresConsts.YENOT_BITAN)
         };
-        this._storageHandler = new MySqlStorageHandler_1.MySqlStorageHandler(false);
+        this._storageHandler = new JsonStorageHandler_1.JsonStorageHandler(false);
     }
     XMLCrawler.prototype.findParser = function (url) {
         for (var key in this.parsersList) {
@@ -113,7 +113,7 @@ var XMLCrawler = /** @class */ (function () {
                     case 1:
                         _a.sent();
                         console.log("Finished update " + updated.length + " prices of products");
-                        this._storageHandler.close();
+                        //this._storageHandler.close();
                         return [2 /*return*/];
                 }
             });

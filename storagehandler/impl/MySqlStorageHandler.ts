@@ -54,8 +54,8 @@ export class MySqlStorageHandler extends StorageHandler{
 
                 try {
                     await this.query(
-                        `INSERT INTO shopping_cart_prices (barcode ,price, shopping_cart_firm_id) VALUES
-                      (${currProd["barcode"]},${currProd["price"]},${currProd["shopping_cart_firm_id"]})
+                        `INSERT INTO shopping_cart_prices (barcode ,price, shopping_cart_firm_id, updatedAt) VALUES
+                      (${currProd["barcode"]},${currProd["price"]},${currProd["shopping_cart_firm_id"]}, NOW())
                       ON DUPLICATE KEY UPDATE price=${currProd["price"]}, updatedAt=NOW()`);
                 } catch (e) {
                     console.log("failed to insert product: " + currProd + " due to: " + e);

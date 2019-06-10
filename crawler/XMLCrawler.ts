@@ -8,7 +8,7 @@ import {MySqlStorageHandler} from "../storagehandler/impl/MySqlStorageHandler";
 
 export class XMLCrawler {
 
-    private _storageHandler: MySqlStorageHandler;
+    private _storageHandler: JsonStorageHandler;
 
     private readonly parsersList = {
         'shufersal-prices': new XMLParser(StoresConsts.SHUFERSAL),
@@ -17,7 +17,7 @@ export class XMLCrawler {
     };
 
     constructor(){
-        this._storageHandler = new MySqlStorageHandler(false);
+        this._storageHandler = new JsonStorageHandler(false);
     }
 
     private findParser(url: string): XMLParser {
@@ -73,7 +73,7 @@ export class XMLCrawler {
 
         await this._storageHandler.insert(updated, true);
         console.log("Finished update " + updated.length + " prices of products");
-        this._storageHandler.close();
+        //this._storageHandler.close();
         return;
     }
 

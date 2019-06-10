@@ -21,7 +21,7 @@ let run = (urls: string[]): void => {
 
 };
 
-run([YENOT_BITAN_XML.path]);
+run([YENOT_BITAN_XML.path, SHUFERSAL_XML.path, RAMI_LEVI_XML.path]);
 
 
 //'https://www.shufersal.co.il/online/he/A', 'https://www.rami-levy.co.il/category/start_buy'
