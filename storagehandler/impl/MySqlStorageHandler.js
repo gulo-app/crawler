@@ -50,7 +50,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var StorageHandler_1 = require("../StorageHandler");
 var mysql = require("mysql");
-//const IS_PROD  =  process.env.IS_PROD;
 /**
  * Storage handler for MySql Database.
  * Implement update mode for updating products prices
@@ -116,36 +115,12 @@ var MySqlStorageHandler = /** @class */ (function (_super) {
                         return [3 /*break*/, 1];
                     case 6:
                         console.log("update " + updatedProducts.length + " products prices successfully.");
+                        this.close();
                         return [2 /*return*/];
                 }
             });
         });
     };
-    /* try {
-         if (!updateMode) {
-             //TODO: fix brand insertion
-             let newBrand;
-             await this.query(
-                 `INSERT INTO products
-               (barcode, product_name, brand_id, capacity, capacity_unit_id, verifiedCounter)
-                VALUES
-               (${Number(productMap.get(SqlFields.BARCODE))}, "${productMap.get(SqlFields.PRODUCT_NAME)}",
-                 ${Number(newBrand)}, ${Number(productMap.get(SqlFields.CAPACITY))},
-                 ${Number(productMap.get(SqlFields.CAPACITY_UNIT))}, 0)
-                ON DUPLICATE KEY UPDATE verifiedCounter = verifiedCounter + 1;
-             `);
-
-             await this.query(
-                 `INSERT INTO product_category (${ProductCategoryField.BARCODE}, ${ProductCategoryField.CATEGORY_ID})
-                 VALUES
-                 (${productMap.get(SqlFields.BARCODE)}, ${productMap.get(SqlFields.CATEGORY)})
-             `);
-         }
-     }
-     catch (e) {
-         console.log(e);
-         continue;
-     }*/
     MySqlStorageHandler.prototype.query = function (query) {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
@@ -153,7 +128,6 @@ var MySqlStorageHandler = /** @class */ (function (_super) {
                 return [2 /*return*/, new Promise(function (resolve, reject) {
                         _this._conn.query(query, function (err, rows) {
                             if (err) {
-                                //console.log(err);
                                 reject(err);
                             }
                             resolve(rows);

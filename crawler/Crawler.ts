@@ -1,16 +1,8 @@
 import {Parser} from "../parser/Parser";
-import {StorageHandler} from "../storagehandler/StorageHandler";
-import {MySqlStorageHandler} from "../storagehandler/impl/MySqlStorageHandler";
 import {ShufersalParser} from "../parser/impl/shufersal/ShufersalParser";
-import {Downloader} from "../downloader/Downloader";
 import {NewProduct} from "../product/NewProduct";
-import {url} from "inspector";
-import {StoresConsts} from "../storagehandler/model/SqlConsts";
 import {RamiLevyParser} from "../parser/impl/ramilevy/RamiLevyParser";
-import * as path from "path";
 import {JsonStorageHandler} from "../storagehandler/impl/JsonStorageHandler";
-import {SeleniumDownloader} from "../downloader/impl/SeleniumDownloader";
-import {YenotBitanParser} from "../parser/impl/YenotBitanParser";
 import {RequestDownloader} from "../downloader/impl/RequestDownloader";
 
 const cheerio = require('cheerio');
@@ -27,8 +19,8 @@ export class Crawler {
         'https://www.rami-levy.co.il/default.asp?catid=': new RamiLevyParser()
     };
 
-    constructor(){
-        this._storageHandler = new JsonStorageHandler(false);
+    constructor(isProd: boolean){
+        this._storageHandler = new JsonStorageHandler(isProd);
         this._finishedParseList = new Array<string>();
     }
 
@@ -65,7 +57,7 @@ export class Crawler {
                 }
             }
         }
-        //TODO: add validation on products
+
         await this._storageHandler.insert(newProducts, false);
         console.log("Finished parse " + newProducts.length + " new products");
         return newProducts;
@@ -97,7 +89,7 @@ export class Crawler {
                 }
             }
         }
-        //TODO: add validation on products
+
         await this._storageHandler.insert(updated, true);
         console.log("Finished parse and update " + updated.length + " prices of products");
         return;

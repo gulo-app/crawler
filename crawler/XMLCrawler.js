@@ -37,16 +37,37 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var SqlConsts_1 = require("../storagehandler/model/SqlConsts");
 var JsonStorageHandler_1 = require("../storagehandler/impl/JsonStorageHandler");
-var XMLParser_1 = require("./XMLParser");
+var XMLParser_1 = require("../parser/XMLParser");
 var XMLDownloader_1 = require("../downloader/impl/XMLDownloader");
+var path = require("path");
+/**
+ * crawler for handle stores xml products files.
+ */
 var XMLCrawler = /** @class */ (function () {
-    function XMLCrawler() {
+    function XMLCrawler(isProd) {
+        var _this = this;
         this.parsersList = {
-            'shufersal-prices': new XMLParser_1.XMLParser(SqlConsts_1.StoresConsts.SHUFERSAL),
-            'ramilevi-prices': new XMLParser_1.XMLParser(SqlConsts_1.StoresConsts.RAMI_LEVI),
-            'yenotbitan-prices': new XMLParser_1.XMLParser(SqlConsts_1.StoresConsts.YENOT_BITAN)
+            'shufersal': new XMLParser_1.XMLParser(SqlConsts_1.StoresConsts.SHUFERSAL),
+            'ramilevi': new XMLParser_1.XMLParser(SqlConsts_1.StoresConsts.RAMI_LEVI),
+            'yenotbitan': new XMLParser_1.XMLParser(SqlConsts_1.StoresConsts.YENOT_BITAN)
         };
-        this._storageHandler = new JsonStorageHandler_1.JsonStorageHandler(false);
+        /**
+         * List all files in a directory recursively
+         */
+        this.getAllXmlFiles = function (dir, filelist) {
+            var fs = fs || require('fs'), files = fs.readdirSync(dir);
+            filelist = filelist || [];
+            files.forEach(function (file) {
+                if (fs.statSync(dir + '\\' + file).isDirectory()) {
+                    filelist = this.getAllXmlFiles(path.join(dir, file), filelist);
+                }
+                else {
+                    filelist.push(path.join(dir, file));
+                }
+            }.bind(_this));
+            return filelist;
+        };
+        this._storageHandler = new JsonStorageHandler_1.JsonStorageHandler(isProd);
     }
     XMLCrawler.prototype.findParser = function (url) {
         for (var key in this.parsersList) {
@@ -56,6 +77,10 @@ var XMLCrawler = /** @class */ (function () {
         }
         return null;
     };
+    /**
+     * reads products details
+     * @param files - array of file paths
+     */
     XMLCrawler.prototype.crawl = function (files) {
         return __awaiter(this, void 0, void 0, function () {
             var newProducts, filesToCrawl, currentFile, parser, jsonFile, products;
@@ -87,6 +112,10 @@ var XMLCrawler = /** @class */ (function () {
             });
         });
     };
+    /**
+     * reads products prices and barcodes for updating out storage
+     * @param files - array of file paths
+     */
     XMLCrawler.prototype.update = function (files) {
         return __awaiter(this, void 0, void 0, function () {
             var updated, filesToCrawl, currentFile, parser, jsonFile, products;
@@ -113,7 +142,6 @@ var XMLCrawler = /** @class */ (function () {
                     case 1:
                         _a.sent();
                         console.log("Finished update " + updated.length + " prices of products");
-                        //this._storageHandler.close();
                         return [2 /*return*/];
                 }
             });

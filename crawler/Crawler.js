@@ -41,14 +41,14 @@ var JsonStorageHandler_1 = require("../storagehandler/impl/JsonStorageHandler");
 var RequestDownloader_1 = require("../downloader/impl/RequestDownloader");
 var cheerio = require('cheerio');
 var Crawler = /** @class */ (function () {
-    function Crawler() {
+    function Crawler(isProd) {
         this.parsersList = {
             'shufersal.co.il/online/he/A': new ShufersalParser_1.ShufersalParser(),
             'shufersal.co.il/online/he/c': new ShufersalParser_1.ShufersalParser(),
             'https://www.rami-levy.co.il/category/start_buy': new RamiLevyParser_1.RamiLevyParser(),
             'https://www.rami-levy.co.il/default.asp?catid=': new RamiLevyParser_1.RamiLevyParser()
         };
-        this._storageHandler = new JsonStorageHandler_1.JsonStorageHandler(false);
+        this._storageHandler = new JsonStorageHandler_1.JsonStorageHandler(isProd);
         this._finishedParseList = new Array();
     }
     Crawler.prototype.findParser = function (url) {
@@ -94,11 +94,8 @@ var Crawler = /** @class */ (function () {
                         }
                         _a.label = 4;
                     case 4: return [3 /*break*/, 1];
-                    case 5: 
-                    //TODO: add validation on products
-                    return [4 /*yield*/, this._storageHandler.insert(newProducts, false)];
+                    case 5: return [4 /*yield*/, this._storageHandler.insert(newProducts, false)];
                     case 6:
-                        //TODO: add validation on products
                         _a.sent();
                         console.log("Finished parse " + newProducts.length + " new products");
                         return [2 /*return*/, newProducts];
@@ -108,7 +105,7 @@ var Crawler = /** @class */ (function () {
     };
     Crawler.prototype.update = function (products) {
         return __awaiter(this, void 0, void 0, function () {
-            var uniqueUrls, updated, _i, products_1, product, _a, _b, _c, url_1, parser, html, $;
+            var uniqueUrls, updated, _i, products_1, product, _a, _b, _c, url, parser, html, $;
             return __generator(this, function (_d) {
                 switch (_d.label) {
                     case 0:
@@ -132,25 +129,22 @@ var Crawler = /** @class */ (function () {
                         _d.label = 1;
                     case 1:
                         if (!(_c < _a.length)) return [3 /*break*/, 4];
-                        url_1 = _a[_c];
-                        parser = this.findParser(url_1);
+                        url = _a[_c];
+                        parser = this.findParser(url);
                         if (!parser) return [3 /*break*/, 3];
-                        return [4 /*yield*/, new RequestDownloader_1.RequestDownloader().downloadHtml(url_1)];
+                        return [4 /*yield*/, new RequestDownloader_1.RequestDownloader().downloadHtml(url)];
                     case 2:
                         html = _d.sent();
                         $ = cheerio.load(html);
                         if ($) {
-                            Array.prototype.push.apply(updated, parser.parse(url_1, $, true, uniqueUrls[url_1]));
+                            Array.prototype.push.apply(updated, parser.parse(url, $, true, uniqueUrls[url]));
                         }
                         _d.label = 3;
                     case 3:
                         _c++;
                         return [3 /*break*/, 1];
-                    case 4: 
-                    //TODO: add validation on products
-                    return [4 /*yield*/, this._storageHandler.insert(updated, true)];
+                    case 4: return [4 /*yield*/, this._storageHandler.insert(updated, true)];
                     case 5:
-                        //TODO: add validation on products
                         _d.sent();
                         console.log("Finished parse and update " + updated.length + " prices of products");
                         return [2 /*return*/];

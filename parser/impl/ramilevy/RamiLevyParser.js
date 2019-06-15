@@ -92,7 +92,7 @@ var RamiLevyParser = /** @class */ (function (_super) {
             var productsIdWithPrefix = productsId.map(function (value) {
                 return '/files/products/big/' + value + '.jpg';
             });
-            if (productsIdWithPrefix.includes(product.attribs['data-src'])) {
+            if (productsIdWithPrefix.includes(product.attribs['xml-data-src'])) {
                 var $ = cheerio.load(product);
                 var imgObj = $('div.image > img').attr('src').split("/");
                 var barcode = imgObj[imgObj.length - 1].replace(".jpg", " ");

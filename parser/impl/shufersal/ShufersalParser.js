@@ -34,7 +34,7 @@ var ShufersalParser = /** @class */ (function (_super) {
             for (var _i = 0, menu_1 = menu; _i < menu_1.length; _i++) {
                 var li = menu_1[_i];
                 try {
-                    var category = li.attribs['data-category'];
+                    var category = li.attribs['xml-data-category'];
                     urls.push(this.categoryUrl + '/' + category);
                 }
                 catch (e) {
@@ -76,9 +76,9 @@ var ShufersalParser = /** @class */ (function (_super) {
                 .text().split(' ');
             var brand_name = $('div > div.textContainer > div > div.labelsListContainer > div > span:nth-child(2)').text();
             var category = url.split('/');
-            var barcode = product.attribs['data-product-code'].replace('P_', '');
-            var product_name = product.attribs['data-product-name'];
-            var product_price = product.attribs['data-product-price'];
+            var barcode = product.attribs['xml-data-product-code'].replace('P_', '');
+            var product_name = product.attribs['xml-data-product-name'];
+            var product_price = product.attribs['xml-data-product-price'];
             try {
                 var newProduct = new NewProduct_1.NewProduct(Number(barcode), product_name, Number(product_price), url, Number(capacityInfo[0]), capacityInfo[1], brand_name, category[category.length - 1], SqlConsts_1.StoresConsts.SHUFERSAL);
                 console.log(newProduct);
@@ -99,8 +99,8 @@ var ShufersalParser = /** @class */ (function (_super) {
         });
         for (var _i = 0, products_2 = products; _i < products_2.length; _i++) {
             var product = products_2[_i];
-            if (productsIdWithPrefix.includes(product.attribs['data-product-code'])) {
-                updatedProducts.push(new Product_1.Product(Number(product.attribs['data-product-code'].replace('P_', '')), Number(product.attribs['data-product-price']), SqlConsts_1.StoresConsts.SHUFERSAL));
+            if (productsIdWithPrefix.includes(product.attribs['xml-data-product-code'])) {
+                updatedProducts.push(new Product_1.Product(Number(product.attribs['xml-data-product-code'].replace('P_', '')), Number(product.attribs['xml-data-product-price']), SqlConsts_1.StoresConsts.SHUFERSAL));
             }
         }
         return updatedProducts;

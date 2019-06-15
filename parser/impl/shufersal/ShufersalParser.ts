@@ -24,7 +24,7 @@ export class ShufersalParser extends Parser {
             let menu: CheerioElement[] = $('ul#secondMenu1 > li').toArray();
             for (let li of menu) {
                 try {
-                    let category = li.attribs['data-category'];
+                    let category = li.attribs['xml-data-category'];
                     urls.push(this.categoryUrl + '/' + category);
                 } catch (e) {
                     continue;
@@ -64,9 +64,9 @@ export class ShufersalParser extends Parser {
                 .text().split(' ');
             let brand_name = $('div > div.textContainer > div > div.labelsListContainer > div > span:nth-child(2)').text();
             let category: string[] = url.split('/');
-            let barcode = product.attribs['data-product-code'].replace('P_', '');
-            let product_name = product.attribs['data-product-name'];
-            let product_price = product.attribs['data-product-price']
+            let barcode = product.attribs['xml-data-product-code'].replace('P_', '');
+            let product_name = product.attribs['xml-data-product-name'];
+            let product_price = product.attribs['xml-data-product-price']
             try {
                 let newProduct = new NewProduct(
                     Number(barcode),
@@ -97,11 +97,11 @@ export class ShufersalParser extends Parser {
         });
 
         for(let product of products){
-            if(productsIdWithPrefix.includes(product.attribs['data-product-code'])) {
+            if(productsIdWithPrefix.includes(product.attribs['xml-data-product-code'])) {
                 updatedProducts.push(
                     new Product(
-                        Number(product.attribs['data-product-code'].replace('P_', '')),
-                        Number(product.attribs['data-product-price']),
+                        Number(product.attribs['xml-data-product-code'].replace('P_', '')),
+                        Number(product.attribs['xml-data-product-price']),
                         StoresConsts.SHUFERSAL
                     ));
             }

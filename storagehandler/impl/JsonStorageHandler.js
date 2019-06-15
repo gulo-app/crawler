@@ -55,14 +55,14 @@ var StorageUtils_1 = require("../StorageUtils");
 var SqlConsts_1 = require("../model/SqlConsts");
 var PRODUCTS_OUTPUT = { filename: "products.json", get path() { return path.join(__dirname, '../../output', this.filename); } };
 var PRICES_OUTPUT = { filename: "prices.json", get path() { return path.join(__dirname, '../../output', this.filename); } };
-var TEST_OUTPUT = { filename: "pricestest.json", get path() { return path.join(__dirname, '../../output', this.filename); } };
+/**
+ * Storage handler for Json file.
+ * Implement new products and update mode for products prices
+ */
 var JsonStorageHandler = /** @class */ (function (_super) {
     __extends(JsonStorageHandler, _super);
     function JsonStorageHandler(isProd) {
-        var _this = _super.call(this, isProd) || this;
-        _this.productsList = new Array();
-        _this.pricesList = new Array();
-        return _this;
+        return _super.call(this, isProd) || this;
     }
     JsonStorageHandler.prototype.insert = function (products, updateMode) {
         return __awaiter(this, void 0, void 0, function () {

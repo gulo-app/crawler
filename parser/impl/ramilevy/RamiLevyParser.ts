@@ -81,7 +81,7 @@ export class RamiLevyParser extends Parser {
             let productsIdWithPrefix = productsId.map(function (value) {
                 return '/files/products/big/' + value + '.jpg';
             });
-            if (productsIdWithPrefix.includes(product.attribs['data-src'])) {
+            if (productsIdWithPrefix.includes(product.attribs['xml-data-src'])) {
                 const $ = cheerio.load(product);
                 let imgObj: string[] = $('div.image > img').attr('src').split("/");
                 let barcode = imgObj[imgObj.length - 1].replace(".jpg", " ");
