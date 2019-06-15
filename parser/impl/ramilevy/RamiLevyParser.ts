@@ -1,14 +1,9 @@
-import {NewProduct} from "../../../product/NewProduct";
-
 const cheerio     =   require('cheerio');
-const fs          =   require('fs');
-const path        =   require('path');
+import {NewProduct} from "../../../product/NewProduct";
 import { Parser } from "../../Parser";
 import {ParserUrls} from "../../ParserUrls";
 import {StoresConsts} from "../../../storagehandler/model/SqlConsts";
 import {Product} from "../../../product/Product";
-const TMP_FILE    =   {filename: 'tmp_products.json', get path(){return path.join(__dirname, './output', this.filename)}};
-const OUTPUT      =   {filename: 'output.json', get path(){return path.join(__dirname, '../output', this.filename)}};
 
 
 export class RamiLevyParser extends Parser {

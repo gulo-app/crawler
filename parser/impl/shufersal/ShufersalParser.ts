@@ -1,11 +1,9 @@
-import {StoresConsts} from "../../../storagehandler/model/SqlConsts";
-
 const cheerio = require('cheerio');
+import {StoresConsts} from "../../../storagehandler/model/SqlConsts";
 import { Parser } from "../../Parser";
 import {ParserUrls} from "../../ParserUrls";
 import {NewProduct} from "../../../product/NewProduct";
 import {Product} from "../../../product/Product";
-import {StorageUtils} from "../../../storagehandler/StorageUtils";
 
 export class ShufersalParser extends Parser {
 
@@ -89,7 +87,7 @@ export class ShufersalParser extends Parser {
         return parsedProducts;
     }
 
-    //TODO: check if works - test
+
     parseUpdate(products: CheerioElement[], productsBarcodeList: [] = void 0) {
         let updatedProducts = [];
         let productsIdWithPrefix = productsBarcodeList.map(function (value) {
